@@ -23,13 +23,400 @@
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-      this.components = new System.ComponentModel.Container();
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 450);
-      this.Text = "Form1";
+            this.TabView = new System.Windows.Forms.TabControl();
+            this.Table = new System.Windows.Forms.TabPage();
+            this.button_add_Rows = new System.Windows.Forms.Button();
+            this.button_Save = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Matrix = new System.Windows.Forms.TabPage();
+            this.button_Add_Row_Colum = new System.Windows.Forms.Button();
+            this.button_Save_Mutrix = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.x1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.DrawGraphButton = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.ExecuteHamilton = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TabView.SuspendLayout();
+            this.Table.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Matrix.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // TabView
+            // 
+            this.TabView.Controls.Add(this.Table);
+            this.TabView.Controls.Add(this.Matrix);
+            this.TabView.Controls.Add(this.tabPage1);
+            this.TabView.Controls.Add(this.tabPage4);
+            this.TabView.Controls.Add(this.tabPage2);
+            this.TabView.Controls.Add(this.tabPage3);
+            this.TabView.Controls.Add(this.tabPage5);
+            this.TabView.Controls.Add(this.tabPage6);
+            this.TabView.Controls.Add(this.tabPage7);
+            this.TabView.Location = new System.Drawing.Point(12, 12);
+            this.TabView.Name = "TabView";
+            this.TabView.SelectedIndex = 0;
+            this.TabView.Size = new System.Drawing.Size(960, 537);
+            this.TabView.TabIndex = 0;
+            // 
+            // Table
+            // 
+            this.Table.BackColor = System.Drawing.Color.White;
+            this.Table.Controls.Add(this.button_add_Rows);
+            this.Table.Controls.Add(this.button_Save);
+            this.Table.Controls.Add(this.dataGridView1);
+            this.Table.Location = new System.Drawing.Point(4, 22);
+            this.Table.Name = "Table";
+            this.Table.Padding = new System.Windows.Forms.Padding(3);
+            this.Table.Size = new System.Drawing.Size(952, 511);
+            this.Table.TabIndex = 0;
+            this.Table.Text = "Table view";
+            // 
+            // button_add_Rows
+            // 
+            this.button_add_Rows.Location = new System.Drawing.Point(871, 35);
+            this.button_add_Rows.Name = "button_add_Rows";
+            this.button_add_Rows.Size = new System.Drawing.Size(75, 23);
+            this.button_add_Rows.TabIndex = 2;
+            this.button_add_Rows.Text = "Add edge";
+            this.button_add_Rows.UseVisualStyleBackColor = true;
+            this.button_add_Rows.Click += new System.EventHandler(this.button_add_Rows_Click);
+            // 
+            // button_Save
+            // 
+            this.button_Save.Location = new System.Drawing.Point(871, 6);
+            this.button_Save.Name = "button_Save";
+            this.button_Save.Size = new System.Drawing.Size(75, 23);
+            this.button_Save.TabIndex = 1;
+            this.button_Save.Text = "Save";
+            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(862, 505);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // Matrix
+            // 
+            this.Matrix.Controls.Add(this.button_Add_Row_Colum);
+            this.Matrix.Controls.Add(this.button_Save_Mutrix);
+            this.Matrix.Controls.Add(this.dataGridView2);
+            this.Matrix.Location = new System.Drawing.Point(4, 22);
+            this.Matrix.Name = "Matrix";
+            this.Matrix.Padding = new System.Windows.Forms.Padding(3);
+            this.Matrix.Size = new System.Drawing.Size(952, 511);
+            this.Matrix.TabIndex = 1;
+            this.Matrix.Text = "Matrix view";
+            this.Matrix.UseVisualStyleBackColor = true;
+            // 
+            // button_Add_Row_Colum
+            // 
+            this.button_Add_Row_Colum.Location = new System.Drawing.Point(871, 35);
+            this.button_Add_Row_Colum.Name = "button_Add_Row_Colum";
+            this.button_Add_Row_Colum.Size = new System.Drawing.Size(75, 23);
+            this.button_Add_Row_Colum.TabIndex = 2;
+            this.button_Add_Row_Colum.Text = "Add vertex";
+            this.button_Add_Row_Colum.UseVisualStyleBackColor = true;
+            this.button_Add_Row_Colum.Click += new System.EventHandler(this.button_Add_Row_Colum_Click);
+            // 
+            // button_Save_Mutrix
+            // 
+            this.button_Save_Mutrix.Location = new System.Drawing.Point(871, 6);
+            this.button_Save_Mutrix.Name = "button_Save_Mutrix";
+            this.button_Save_Mutrix.Size = new System.Drawing.Size(75, 23);
+            this.button_Save_Mutrix.TabIndex = 1;
+            this.button_Save_Mutrix.Text = "Save";
+            this.button_Save_Mutrix.UseVisualStyleBackColor = true;
+            this.button_Save_Mutrix.Click += new System.EventHandler(this.button_Save_Mutrix_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.x1});
+            this.dataGridView2.Location = new System.Drawing.Point(8, 8);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.Size = new System.Drawing.Size(857, 497);
+            this.dataGridView2.TabIndex = 0;
+            // 
+            // x1
+            // 
+            this.x1.HeaderText = "X";
+            this.x1.MinimumWidth = 6;
+            this.x1.Name = "x1";
+            this.x1.Width = 39;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.DrawGraphButton);
+            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(952, 511);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Graph view";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(82, 10);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(76, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // DrawGraphButton
+            // 
+            this.DrawGraphButton.Location = new System.Drawing.Point(7, 7);
+            this.DrawGraphButton.Name = "DrawGraphButton";
+            this.DrawGraphButton.Size = new System.Drawing.Size(70, 25);
+            this.DrawGraphButton.TabIndex = 1;
+            this.DrawGraphButton.Text = "Draw graph";
+            this.DrawGraphButton.UseVisualStyleBackColor = true;
+            this.DrawGraphButton.Click += new System.EventHandler(this.DrawGraphButton_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Location = new System.Drawing.Point(7, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(920, 498);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.pictureBox2);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(952, 511);
+            this.tabPage4.TabIndex = 5;
+            this.tabPage4.Text = "Minimal value";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Draw";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(946, 505);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(952, 511);
+            this.tabPage2.TabIndex = 3;
+            this.tabPage2.Text = "Dijkstra";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(840, 29);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(952, 511);
+            this.tabPage3.TabIndex = 4;
+            this.tabPage3.Text = "Save as";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.ExecuteHamilton);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(952, 511);
+            this.tabPage5.TabIndex = 6;
+            this.tabPage5.Text = "Hamilton";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // ExecuteHamilton
+            // 
+            this.ExecuteHamilton.Location = new System.Drawing.Point(861, 6);
+            this.ExecuteHamilton.Name = "ExecuteHamilton";
+            this.ExecuteHamilton.Size = new System.Drawing.Size(85, 30);
+            this.ExecuteHamilton.TabIndex = 0;
+            this.ExecuteHamilton.Text = "Hamilton";
+            this.ExecuteHamilton.UseVisualStyleBackColor = true;
+            this.ExecuteHamilton.Click += new System.EventHandler(this.ExecuteHamilton_Click);
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.dataGridView3);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(952, 511);
+            this.tabPage6.TabIndex = 7;
+            this.tabPage6.Text = "Adjacency";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
+            this.dataGridView3.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(940, 499);
+            this.dataGridView3.TabIndex = 0;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.dataGridView4);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(952, 511);
+            this.tabPage7.TabIndex = 8;
+            this.tabPage7.Text = "Incidency";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column2});
+            this.dataGridView4.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(940, 499);
+            this.dataGridView4.TabIndex = 0;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(31)))), ((int)(((byte)(46)))));
+            this.ClientSize = new System.Drawing.Size(985, 561);
+            this.Controls.Add(this.TabView);
+            this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Matrix analyzer";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.TabView.ResumeLayout(false);
+            this.Table.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Matrix.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.tabPage7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.ResumeLayout(false);
+
     }
 
-    #endregion
-  }
+        #endregion
+
+        private System.Windows.Forms.TabControl TabView;
+        private System.Windows.Forms.TabPage Table;
+        private System.Windows.Forms.TabPage Matrix;
+        private System.Windows.Forms.Button button_Save;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button_Save_Mutrix;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button button_add_Rows;
+        private System.Windows.Forms.Button button_Add_Row_Colum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn x1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Button DrawGraphButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox textBox2;
+    private System.Windows.Forms.TabPage tabPage4;
+    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Button ExecuteHamilton;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+    }
 }
 
