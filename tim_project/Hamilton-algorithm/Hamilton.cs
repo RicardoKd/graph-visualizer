@@ -1,4 +1,4 @@
-﻿namespace tim_project.Hamilton_algorithm
+﻿namespace GraphVisualizer.Hamilton_algorithm
 {
     public class Hamilton
     {

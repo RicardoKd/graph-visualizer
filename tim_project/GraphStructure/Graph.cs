@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace tim_project.GraphStructure
+namespace GraphVisualizer.GraphStructure
 {
     public class Graph
     {

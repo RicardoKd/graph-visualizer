@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using tim_project.GraphStructure;
+using GraphVisualizer.GraphStructure;
 
-namespace tim_project.Dijkstra_algorithm
+namespace GraphVisualizer.Dijkstra_algorithm
 {
     class dij_element //element_for_Dijkstra
     {

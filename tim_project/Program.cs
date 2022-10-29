@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace tim_project
+namespace GraphVisualizer
 {
     internal static class Program
     {

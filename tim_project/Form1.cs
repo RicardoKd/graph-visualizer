@@ -4,11 +4,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using tim_project.Dijkstra_algorithm;
-using tim_project.GraphStructure;
-using tim_project.Hamilton_algorithm;
+using GraphVisualizer.Dijkstra_algorithm;
+using GraphVisualizer.GraphStructure;
+using GraphVisualizer.Hamilton_algorithm;
 
-namespace tim_project
+namespace GraphVisualizer
 {
     public partial class Form1 : Form
     {

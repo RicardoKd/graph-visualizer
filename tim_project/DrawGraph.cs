@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace tim_project
+namespace GraphVisualizer
 {
     internal class DrawGraph
     {

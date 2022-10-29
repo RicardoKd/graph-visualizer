@@ -1,6 +1,6 @@
-﻿using tim_project.GraphStructure;
+﻿using GraphVisualizer.GraphStructure;
 
-namespace tim_project.Dijkstra_algorithm
+namespace GraphVisualizer.Dijkstra_algorithm
 {
     public interface IDijkstra
     {

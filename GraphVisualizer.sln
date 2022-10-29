@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tim_project", "tim_project\tim_project.csproj", "{F6BBF2FC-09D9-49CC-A03D-8306EC6369D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphVisualizer", "tim_project\GraphVisualizer.csproj", "{F6BBF2FC-09D9-49CC-A03D-8306EC6369D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

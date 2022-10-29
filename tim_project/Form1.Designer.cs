@@ -1,4 +1,4 @@
-﻿namespace tim_project
+﻿namespace GraphVisualizer
 {
     partial class Form1
     {

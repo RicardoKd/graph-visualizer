@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace tim_project.Properties {
+namespace GraphVisualizer.Properties {
 
 
   /// <summary>

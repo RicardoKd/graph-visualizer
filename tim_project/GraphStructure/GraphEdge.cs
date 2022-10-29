@@ -1,4 +1,4 @@
-﻿namespace tim_project.GraphStructure
+﻿namespace GraphVisualizer.GraphStructure
 {
     public class GraphEdge
     {
