@@ -38,7 +38,7 @@ namespace GraphVisualizer.Properties {
     internal static global::System.Resources.ResourceManager ResourceManager {
       get {
         if ((resourceMan == null)) {
-          global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("tim_project.Properties.Resources", typeof(Resources).Assembly);
+          global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GraphVisualizer.Properties.Resources", typeof(Resources).Assembly);
           resourceMan = temp;
         }
         return resourceMan;

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F6BBF2FC-09D9-49CC-A03D-8306EC6369D8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>tim_project</RootNamespace>
-    <AssemblyName>tim_project</AssemblyName>
+    <RootNamespace>GraphVisualizer</RootNamespace>
+    <AssemblyName>GraphVisualizer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
