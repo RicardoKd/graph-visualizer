@@ -14,6 +14,7 @@ namespace tim_project
     {
         private int _counter = 0;
         private string[,] _matrix;
+        private string[,] _adjacencyMatrix;
         private List<NodeConnection> _nodeConnections = new List<NodeConnection>();
         private Graph _graph = new Graph();
 
@@ -212,6 +213,8 @@ namespace tim_project
                     }
                 }
             }
+            
+            _adjacencyMatrix = adjMatrix;
 
             for (int i = 0; i < _matrix.GetLength(0) - 1; i++)
             {
