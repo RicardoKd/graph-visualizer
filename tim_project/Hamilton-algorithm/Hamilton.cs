@@ -1,8 +1,41 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using tim_project.GraphStructure;
 
 namespace tim_project.Hamilton_algorithm {
+  public class AdjacencyMatrix {
+    private int[,] adjacencyMatrix;
+
+    public AdjacencyMatrix(Graph graph) {
+      int quantityOfVertices = graph.Vertices.Count;
+
+      int[,] adjacencyMatrix = new int[quantityOfVertices, quantityOfVertices];
+
+      if (quantityOfVertices < 2) {
+        return;
+      }
+
+      for (int i = 0; i < adjacencyMatrix.GetLength(0); i++) {
+        for (int j = 0; j < adjacencyMatrix.GetLength(1); j++) {
+          adjacencyMatrix[i, j] = 0;
+        }
+      }
+
+      int counter = 0;
+      graph.Vertices.ForEach(x => {
+        for (int i = 0; i < x.Edges.Count; i++) {
+          int index = graph.Vertices.FindIndex(v => v == x.Edges[i].ConnectedVertex);
+          adjacencyMatrix[counter, index] = 1;
+        }
+        counter += 1;
+      });
+
+    }
+
+    public int[,] GetAdjacencyMatrix() {
+      return adjacencyMatrix;
+    }
+  }
+
   public class HamiltonianCycle {
     readonly int quantityOfVertices;
     int[] path;
@@ -11,7 +44,6 @@ namespace tim_project.Hamilton_algorithm {
       this.quantityOfVertices = quantityOfVertices;
     }
 
-    /* Main function */
     public bool IsSafe(int v, int[,] graph, int[] path, int pos) {
       if (graph[path[pos - 1], v] == 0)
         return false;
@@ -23,7 +55,6 @@ namespace tim_project.Hamilton_algorithm {
       return true;
     }
 
-    /* checker for Hamiltonian cycle */
     public bool HamiltonCycleUtil(int[,] graph, int[] path, int pos) {
       if (pos == quantityOfVertices) {
         if (graph[path[pos - 1], path[0]] == 1)
@@ -46,12 +77,6 @@ namespace tim_project.Hamilton_algorithm {
       return false;
     }
 
-    /* Hamiltonian Cycle algorithm. It
-    uses hamCycleUtil() function. 
-
-    It returns false if there
-    is no Hamiltonian Cycle possible,
-    otherwise return true and prints the path.*/
     public int HamiltonCycle(int[,] graph) {
       path = new int[quantityOfVertices];
       for (int i = 0; i < quantityOfVertices; i++)
@@ -65,13 +90,11 @@ namespace tim_project.Hamilton_algorithm {
         return 0;
       }
 
-      string endResult = PrintSolution(path);
-
       return 1;
     }
 
     /* Print Function*/
-    public string PrintSolution(int[] path) {
+    public string ResultToString(int[] path) {
       string result = "";
 
       Debug.WriteLine("Solution Exists:");
@@ -87,75 +110,22 @@ namespace tim_project.Hamilton_algorithm {
   }
 
   public class Hamilton {
-    static Graph graph = new Graph();
+    private Graph graph;
 
-    public static void Run() {
-      ///
-      /// Just fill graph with values to test Hamilton algorithm
-      ///
-      for (int i = 0; i < 5; i++) {
-        string vertex_name = i.ToString();
-        graph.AddVertex(vertex_name);
-      }
-
-      Debug.WriteLine("Vertices:");
-      graph.Vertices.ForEach(v => {
-        Debug.WriteLine(v.Name);
-      });
-
-      string vertex1_name = "0", vertex2_name = "1";
-      int e_weight = Int32.Parse("1");
-      graph.AddEdge(vertex1_name, vertex2_name, e_weight);
-      Debug.WriteLine($"\nEDGE with weight {e_weight} connects Vertex {vertex1_name} and Vertex {vertex2_name}");
-
-      vertex1_name = "1"; vertex2_name = "2";
-      e_weight = Int32.Parse("1");
-      graph.AddEdge(vertex1_name, vertex2_name, e_weight);
-      Debug.WriteLine($"\nEDGE with weight {e_weight} connects Vertex {vertex1_name} and Vertex {vertex2_name}");
-
-      vertex1_name = "2"; vertex2_name = "4";
-      e_weight = Int32.Parse("1");
-      graph.AddEdge(vertex1_name, vertex2_name, e_weight);
-      Debug.WriteLine($"\nEDGE with weight {e_weight} connects Vertex {vertex1_name} and Vertex {vertex2_name}");
-
-      vertex1_name = "1"; vertex2_name = "4";
-      e_weight = Int32.Parse("1");
-      graph.AddEdge(vertex1_name, vertex2_name, e_weight);
-      Debug.WriteLine($"\nEDGE with weight {e_weight} connects Vertex {vertex1_name} and Vertex {vertex2_name}");
-
-      vertex1_name = "1"; vertex2_name = "3";
-      e_weight = Int32.Parse("1");
-      graph.AddEdge(vertex1_name, vertex2_name, e_weight);
-      Debug.WriteLine($"\nEDGE with weight {e_weight} connects Vertex {vertex1_name} and Vertex {vertex2_name}");
-
-      vertex1_name = "3"; vertex2_name = "0";
-      e_weight = Int32.Parse("1");
-      graph.AddEdge(vertex1_name, vertex2_name, e_weight);
-      Debug.WriteLine($"\nEDGE with weight {e_weight} connects Vertex {vertex1_name} and Vertex {vertex2_name}");
-
-      vertex1_name = "3"; vertex2_name = "4";
-      e_weight = Int32.Parse("1");
-      graph.AddEdge(vertex1_name, vertex2_name, e_weight);
-      Debug.WriteLine($"\nEDGE with weight {e_weight} connects Vertex {vertex1_name} and Vertex {vertex2_name}");
-
-      ///
-      /// Perform Hamilton Algo
-      ///
+    public Hamilton(Graph graph) {
+      this.graph = graph;
       HamiltonMethod();
-
-      Debug.WriteLine("");
     }
 
-    static int[,] AdjacencyMatrix() {
+    int[,] CreateAdjacencyMatrix() {
       int quantityOfVertices = graph.Vertices.Count;
-      int[,] AM = new int[quantityOfVertices, quantityOfVertices];
+
+      int[,] adjacencyMatrix = new int[quantityOfVertices, quantityOfVertices];
 
       if (quantityOfVertices >= 3) {
-
-
-        for (int i = 0; i < AM.GetLength(0); i++) {
-          for (int j = 0; j < AM.GetLength(1); j++) {
-            AM[i, j] = 0;
+        for (int i = 0; i < adjacencyMatrix.GetLength(0); i++) {
+          for (int j = 0; j < adjacencyMatrix.GetLength(1); j++) {
+            adjacencyMatrix[i, j] = 0;
           }
         }
 
@@ -163,30 +133,22 @@ namespace tim_project.Hamilton_algorithm {
         graph.Vertices.ForEach(x => {
           for (int i = 0; i < x.Edges.Count; i++) {
             int index = graph.Vertices.FindIndex(v => v == x.Edges[i].ConnectedVertex);
-            AM[counter, index] = 1;
+            adjacencyMatrix[counter, index] = 1;
           }
           counter += 1;
         });
 
-        for (int i = 0; i < AM.GetLength(0); i++) {
-          for (int j = 0; j < AM.GetLength(1); j++) {
-            Debug.Write(' ' + AM[i, j].ToString() + ' ');
-          }
-          Debug.WriteLine("");
-        }
-
-        return AM;
-      } else {
-        return null;
+        return adjacencyMatrix;
       }
+
+      return null;
     }
 
-    public static void HamiltonMethod() {
-      var test = AdjacencyMatrix();
+    public void HamiltonMethod() {
+      var test = CreateAdjacencyMatrix();
       if (test != null) {
-        int Vertices_Count = graph.Vertices.Count;
 
-        HamiltonianCycle hamiltonian = new HamiltonianCycle(Vertices_Count);
+        HamiltonianCycle hamiltonian = new HamiltonianCycle(graph.Vertices.Count);
 
         int[,] graph1 = test;
 
