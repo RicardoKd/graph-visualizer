@@ -1,12 +1,12 @@
 ﻿namespace tim_project.GraphStructure {
-  public class GraphEdge {
-    public GraphVertex ConnectedVertex { get; }
+    public class GraphEdge {
+        public GraphVertex ConnectedVertex { get; }
 
-    public int EdgeWeight { get; }
+        public int EdgeWeight { get; }
 
-    public GraphEdge(GraphVertex connectedVertex, int weight) {
-      ConnectedVertex = connectedVertex;
-      EdgeWeight = weight;
+        public GraphEdge(GraphVertex connectedVertex, int weight) {
+            ConnectedVertex = connectedVertex;
+            EdgeWeight = weight;
+        }
     }
-  }
 }

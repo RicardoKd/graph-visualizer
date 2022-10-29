@@ -1,160 +1,66 @@
-﻿using System.Diagnostics;
-using tim_project.GraphStructure;
+﻿namespace tim_project.Hamilton_algorithm {
+    public class Hamilton {
+        private int _quantityOfVertices;
+        private int[,] _adjacencyMatrix;
+        private int[] _path;
 
-namespace tim_project.Hamilton_algorithm {
-  public class AdjacencyMatrix {
-    private int[,] adjacencyMatrix;
+        public Hamilton(int[,] adjacencyMatrix) {
+            _adjacencyMatrix = adjacencyMatrix;
+            _quantityOfVertices = adjacencyMatrix.GetLength(0) - 1;
+            _path = new int[_quantityOfVertices];
 
-    public AdjacencyMatrix(Graph graph) {
-      int quantityOfVertices = graph.Vertices.Count;
+            for (int i = 0; i < _quantityOfVertices; i++) {
+                _path[i] = -1;
+            }
 
-      int[,] adjacencyMatrix = new int[quantityOfVertices, quantityOfVertices];
-
-      if (quantityOfVertices < 2) {
-        return;
-      }
-
-      for (int i = 0; i < adjacencyMatrix.GetLength(0); i++) {
-        for (int j = 0; j < adjacencyMatrix.GetLength(1); j++) {
-          adjacencyMatrix[i, j] = 0;
+            _path[0] = 0;
         }
-      }
 
-      int counter = 0;
-      graph.Vertices.ForEach(x => {
-        for (int i = 0; i < x.Edges.Count; i++) {
-          int index = graph.Vertices.FindIndex(v => v == x.Edges[i].ConnectedVertex);
-          adjacencyMatrix[counter, index] = 1;
+        public bool Calculate(out int[] path) {
+            path = new int[_quantityOfVertices];
+
+            if (HamiltonCycle()) {
+                path = _path;
+                return true;
+            }
+
+            return false;
         }
-        counter += 1;
-      });
 
-    }
+        private bool HamiltonCycle(int pos = 1) {
+            if (pos == _quantityOfVertices) {
+                if (_adjacencyMatrix[_path[pos - 1], _path[0]] == 1) {
+                    return true;
+                }
 
-    public int[,] GetAdjacencyMatrix() {
-      return adjacencyMatrix;
-    }
-  }
+                return false;
+            }
 
-  public class HamiltonianCycle {
-    readonly int quantityOfVertices;
-    int[] path;
+            for (int i = 1; i < _quantityOfVertices; i++) {
+                if (IsSafe(i, pos)) {
+                    _path[pos] = i;
 
-    public HamiltonianCycle(int quantityOfVertices) {
-      this.quantityOfVertices = quantityOfVertices;
-    }
+                    if (HamiltonCycle(pos + 1)) {
+                        return true;
+                    }
 
-    public bool IsSafe(int v, int[,] graph, int[] path, int pos) {
-      if (graph[path[pos - 1], v] == 0)
-        return false;
+                    _path[pos] = -1;
+                }
+            }
 
-      for (int i = 0; i < pos; i++)
-        if (path[i] == v)
-          return false;
+            return false;
+        }
 
-      return true;
-    }
+        private bool IsSafe(int v, int pos) {
+            if (_adjacencyMatrix[_path[pos - 1], v] == 0) {
+                return false;
+            }
 
-    public bool HamiltonCycleUtil(int[,] graph, int[] path, int pos) {
-      if (pos == quantityOfVertices) {
-        if (graph[path[pos - 1], path[0]] == 1)
-          return true;
-        else
-          return false;
-      }
+            for (int i = 0; i < pos; i++)
+                if (_path[i] == v)
+                    return false;
 
-      for (int v = 1; v < quantityOfVertices; v++) {
-        if (IsSafe(v, graph, path, pos)) {
-          path[pos] = v;
-
-          if (HamiltonCycleUtil(graph, path, pos + 1) == true)
             return true;
-
-          path[pos] = -1;
         }
-      }
-
-      return false;
     }
-
-    public int HamiltonCycle(int[,] graph) {
-      path = new int[quantityOfVertices];
-      for (int i = 0; i < quantityOfVertices; i++)
-        path[i] = -1;
-
-      path[0] = 0;
-
-      if (HamiltonCycleUtil(graph, path, 1) == false) {
-        Debug.WriteLine("\nSolution does not exist");
-
-        return 0;
-      }
-
-      return 1;
-    }
-
-    /* Print Function*/
-    public string ResultToString(int[] path) {
-      string result = "";
-
-      Debug.WriteLine("Solution Exists:");
-      for (int i = 0; i < quantityOfVertices; i++) {
-        Debug.Write("-" + path[i] + "-");
-        result += "-" + path[i] + "-";
-      }
-      // show the complete cycle from start to start
-      Debug.WriteLine("-" + path[0] + "-");
-
-      return result;
-    }
-  }
-
-  public class Hamilton {
-    private Graph graph;
-
-    public Hamilton(Graph graph) {
-      this.graph = graph;
-      HamiltonMethod();
-    }
-
-    int[,] CreateAdjacencyMatrix() {
-      int quantityOfVertices = graph.Vertices.Count;
-
-      int[,] adjacencyMatrix = new int[quantityOfVertices, quantityOfVertices];
-
-      if (quantityOfVertices >= 3) {
-        for (int i = 0; i < adjacencyMatrix.GetLength(0); i++) {
-          for (int j = 0; j < adjacencyMatrix.GetLength(1); j++) {
-            adjacencyMatrix[i, j] = 0;
-          }
-        }
-
-        int counter = 0;
-        graph.Vertices.ForEach(x => {
-          for (int i = 0; i < x.Edges.Count; i++) {
-            int index = graph.Vertices.FindIndex(v => v == x.Edges[i].ConnectedVertex);
-            adjacencyMatrix[counter, index] = 1;
-          }
-          counter += 1;
-        });
-
-        return adjacencyMatrix;
-      }
-
-      return null;
-    }
-
-    public void HamiltonMethod() {
-      var test = CreateAdjacencyMatrix();
-      if (test != null) {
-
-        HamiltonianCycle hamiltonian = new HamiltonianCycle(graph.Vertices.Count);
-
-        int[,] graph1 = test;
-
-        // Print the solution
-        hamiltonian.HamiltonCycle(graph1);
-      }
-    }
-  }
 }
