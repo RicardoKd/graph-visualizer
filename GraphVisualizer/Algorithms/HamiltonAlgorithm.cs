@@ -1,12 +1,12 @@
-﻿namespace GraphVisualizer.Hamilton_algorithm
+﻿namespace GraphVisualizer.Algorithms
 {
-    public class Hamilton
+    public class HamiltonAlgorithm
     {
         private int _quantityOfVertices;
         private int[,] _adjacencyMatrix;
         private int[] _path;
 
-        public Hamilton(int[,] adjacencyMatrix)
+        public HamiltonAlgorithm(int[,] adjacencyMatrix)
         {
             _adjacencyMatrix = adjacencyMatrix;
             _quantityOfVertices = adjacencyMatrix.GetLength(0) - 1;

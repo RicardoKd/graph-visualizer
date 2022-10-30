@@ -4,13 +4,14 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using GraphVisualizer.Dijkstra_algorithm;
+using GraphVisualizer.Algorithms;
 using GraphVisualizer.GraphStructure;
-using GraphVisualizer.Hamilton_algorithm;
+using GraphVisualizer.Models;
+using GraphVisualizer.Structures;
 
 namespace GraphVisualizer
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private int _counter = 0;
         private string[,] _matrix;
@@ -18,26 +19,12 @@ namespace GraphVisualizer
         private List<NodeConnection> _nodeConnections = new List<NodeConnection>();
         private Graph _graph = new Graph();
 
-        public struct NodeConnection
-        {
-            public string FirstPoint;
-            public string SecondPoint;
-            public string Weight;
-
-            public NodeConnection(string firstPoint, string secondPoint, string weight)
-            {
-                FirstPoint = firstPoint;
-                SecondPoint = secondPoint;
-                Weight = weight;
-            }
-        }
-
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainFormLoad(object sender, EventArgs e)
         {
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToOrderColumns = false;
@@ -314,29 +301,29 @@ namespace GraphVisualizer
             }
         }
 
-        private void button_add_Rows_Click(object sender, EventArgs e)
+        private void AddConnectionButtonClick(object sender, EventArgs e)
         {
             _counter++;
             dataGridView1.Columns.Add("Column", "x" + _counter);
         }
 
-        private void button_Add_Row_Colum_Click(object sender, EventArgs e)
+        private void AddNodeToMatrixButtonClick(object sender, EventArgs e)
         {
             dataGridView2.Rows.Add("x" + _counter);
         }
 
-        private void DrawGraphButton_Click(object sender, EventArgs e)
+        private void DrawGraphButtonClick(object sender, EventArgs e)
         {
-            var drawGraph = new DrawGraph(pictureBox1, _matrix);
+            var drawGraph = new DrawGraphModel(pictureBox1, _matrix);
             drawGraph.button1_Click(this, EventArgs.Empty);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ExecutePrimaButtonClick(object sender, EventArgs e)
         {
-            var minimalValGraph = Dijkstra.graph_of_min_cost(_graph);
+            var minimalValGraph = DijkstraAlgorithm.graph_of_min_cost(_graph);
         }
 
-        private void ExecuteHamilton_Click(object sender, EventArgs e)
+        private void ExecuteHamiltonButtonClick(object sender, EventArgs e)
         {
             int[] path;
 
@@ -350,10 +337,10 @@ namespace GraphVisualizer
                 }
             }
 
-            new Hamilton(matrix).Calculate(out path);
+            new HamiltonAlgorithm(matrix).Calculate(out path);
         }
 
-        private void button_Save_Mutrix_Click(object sender, EventArgs e)
+        private void SaveMatrixButtonClick(object sender, EventArgs e)
         {
             string output = string.Empty;
             string[,] matrix = new string[dataGridView2.RowCount, dataGridView2.ColumnCount];
@@ -425,16 +412,6 @@ namespace GraphVisualizer
             }
 
             MessageBox.Show(output);
-        }
-
-        private void tabPage6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

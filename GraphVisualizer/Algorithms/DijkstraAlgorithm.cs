@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using GraphVisualizer.GraphStructure;
 
-namespace GraphVisualizer.Dijkstra_algorithm
+namespace GraphVisualizer.Algorithms
 {
     class dij_element //element_for_Dijkstra
     {
@@ -30,7 +30,7 @@ namespace GraphVisualizer.Dijkstra_algorithm
 
     }
 
-    public static class Dijkstra
+    public static class DijkstraAlgorithm
     { //: IDijkstra {
 
         public static string[][] Dijkstra_algorithm(Graph graph) //Dijkstra's algorithm

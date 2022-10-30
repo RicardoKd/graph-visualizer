@@ -207,23 +207,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dijkstra-algorithm\Dijkstra.cs" />
-    <Compile Include="Dijkstra-algorithm\IDijkstra.cs" />
-    <Compile Include="DrawGraph.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Algorithms\DijkstraAlgorithm.cs" />
+    <Compile Include="Models\DrawGraphModel.cs" />
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GraphStructure\Graph.cs" />
-    <Compile Include="GraphStructure\GraphEdge.cs" />
-    <Compile Include="GraphStructure\GraphVertex.cs" />
-    <Compile Include="Hamilton-algorithm\Hamilton.cs" />
+    <Compile Include="Structures\NodeConnection.cs" />
+    <Compile Include="Structures\GraphStructure\Graph.cs" />
+    <Compile Include="Structures\GraphStructure\GraphEdge.cs" />
+    <Compile Include="Structures\GraphStructure\GraphVertex.cs" />
+    <Compile Include="Algorithms\HamiltonAlgorithm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace GraphVisualizer
+namespace GraphVisualizer.Models
 {
-    internal class DrawGraph
+    internal class DrawGraphModel
     {
         Graphics g;
         List<Node> nodes = new List<Node>();
@@ -27,9 +27,9 @@ namespace GraphVisualizer
         private Point dragFixedPoint;
         PictureBox _pictureBox;
 
-        public DrawGraph() { }
+        public DrawGraphModel() { }
 
-        public DrawGraph(PictureBox pictureBox, string[,] matrix)
+        public DrawGraphModel(PictureBox pictureBox, string[,] matrix)
         {
             _matrix = matrix;
             _pictureBox = pictureBox;

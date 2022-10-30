@@ -1,6 +1,6 @@
 ﻿namespace GraphVisualizer
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,12 @@
         {
             this.TabView = new System.Windows.Forms.TabControl();
             this.Table = new System.Windows.Forms.TabPage();
-            this.button_add_Rows = new System.Windows.Forms.Button();
+            this.AddConnectionButton = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Matrix = new System.Windows.Forms.TabPage();
-            this.button_Add_Row_Colum = new System.Windows.Forms.Button();
-            this.button_Save_Mutrix = new System.Windows.Forms.Button();
+            this.AddNodeToMatrixButton = new System.Windows.Forms.Button();
+            this.SaveMatrixButton = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.x1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -43,13 +43,13 @@
             this.DrawGraphButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ExecutePrimaButton = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.ExecuteHamilton = new System.Windows.Forms.Button();
+            this.ExecuteHamiltonButton = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,7 +93,7 @@
             // Table
             // 
             this.Table.BackColor = System.Drawing.Color.White;
-            this.Table.Controls.Add(this.button_add_Rows);
+            this.Table.Controls.Add(this.AddConnectionButton);
             this.Table.Controls.Add(this.button_Save);
             this.Table.Controls.Add(this.dataGridView1);
             this.Table.Location = new System.Drawing.Point(4, 22);
@@ -103,15 +103,15 @@
             this.Table.TabIndex = 0;
             this.Table.Text = "Table view";
             // 
-            // button_add_Rows
+            // AddConnectionButton
             // 
-            this.button_add_Rows.Location = new System.Drawing.Point(871, 35);
-            this.button_add_Rows.Name = "button_add_Rows";
-            this.button_add_Rows.Size = new System.Drawing.Size(75, 23);
-            this.button_add_Rows.TabIndex = 2;
-            this.button_add_Rows.Text = "Add edge";
-            this.button_add_Rows.UseVisualStyleBackColor = true;
-            this.button_add_Rows.Click += new System.EventHandler(this.button_add_Rows_Click);
+            this.AddConnectionButton.Location = new System.Drawing.Point(871, 35);
+            this.AddConnectionButton.Name = "AddConnectionButton";
+            this.AddConnectionButton.Size = new System.Drawing.Size(75, 23);
+            this.AddConnectionButton.TabIndex = 2;
+            this.AddConnectionButton.Text = "Add edge";
+            this.AddConnectionButton.UseVisualStyleBackColor = true;
+            this.AddConnectionButton.Click += new System.EventHandler(this.AddConnectionButtonClick);
             // 
             // button_Save
             // 
@@ -138,8 +138,8 @@
             // 
             // Matrix
             // 
-            this.Matrix.Controls.Add(this.button_Add_Row_Colum);
-            this.Matrix.Controls.Add(this.button_Save_Mutrix);
+            this.Matrix.Controls.Add(this.AddNodeToMatrixButton);
+            this.Matrix.Controls.Add(this.SaveMatrixButton);
             this.Matrix.Controls.Add(this.dataGridView2);
             this.Matrix.Location = new System.Drawing.Point(4, 22);
             this.Matrix.Name = "Matrix";
@@ -149,25 +149,25 @@
             this.Matrix.Text = "Matrix view";
             this.Matrix.UseVisualStyleBackColor = true;
             // 
-            // button_Add_Row_Colum
+            // AddNodeToMatrixButton
             // 
-            this.button_Add_Row_Colum.Location = new System.Drawing.Point(871, 35);
-            this.button_Add_Row_Colum.Name = "button_Add_Row_Colum";
-            this.button_Add_Row_Colum.Size = new System.Drawing.Size(75, 23);
-            this.button_Add_Row_Colum.TabIndex = 2;
-            this.button_Add_Row_Colum.Text = "Add vertex";
-            this.button_Add_Row_Colum.UseVisualStyleBackColor = true;
-            this.button_Add_Row_Colum.Click += new System.EventHandler(this.button_Add_Row_Colum_Click);
+            this.AddNodeToMatrixButton.Location = new System.Drawing.Point(871, 35);
+            this.AddNodeToMatrixButton.Name = "AddNodeToMatrixButton";
+            this.AddNodeToMatrixButton.Size = new System.Drawing.Size(75, 23);
+            this.AddNodeToMatrixButton.TabIndex = 2;
+            this.AddNodeToMatrixButton.Text = "Add vertex";
+            this.AddNodeToMatrixButton.UseVisualStyleBackColor = true;
+            this.AddNodeToMatrixButton.Click += new System.EventHandler(this.AddNodeToMatrixButtonClick);
             // 
-            // button_Save_Mutrix
+            // SaveMatrixButton
             // 
-            this.button_Save_Mutrix.Location = new System.Drawing.Point(871, 6);
-            this.button_Save_Mutrix.Name = "button_Save_Mutrix";
-            this.button_Save_Mutrix.Size = new System.Drawing.Size(75, 23);
-            this.button_Save_Mutrix.TabIndex = 1;
-            this.button_Save_Mutrix.Text = "Save";
-            this.button_Save_Mutrix.UseVisualStyleBackColor = true;
-            this.button_Save_Mutrix.Click += new System.EventHandler(this.button_Save_Mutrix_Click);
+            this.SaveMatrixButton.Location = new System.Drawing.Point(871, 6);
+            this.SaveMatrixButton.Name = "SaveMatrixButton";
+            this.SaveMatrixButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveMatrixButton.TabIndex = 1;
+            this.SaveMatrixButton.Text = "Save";
+            this.SaveMatrixButton.UseVisualStyleBackColor = true;
+            this.SaveMatrixButton.Click += new System.EventHandler(this.SaveMatrixButtonClick);
             // 
             // dataGridView2
             // 
@@ -217,7 +217,7 @@
             this.DrawGraphButton.TabIndex = 1;
             this.DrawGraphButton.Text = "Draw graph";
             this.DrawGraphButton.UseVisualStyleBackColor = true;
-            this.DrawGraphButton.Click += new System.EventHandler(this.DrawGraphButton_Click);
+            this.DrawGraphButton.Click += new System.EventHandler(this.DrawGraphButtonClick);
             // 
             // pictureBox1
             // 
@@ -232,7 +232,7 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.ExecutePrimaButton);
             this.tabPage4.Controls.Add(this.pictureBox2);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -241,15 +241,15 @@
             this.tabPage4.Text = "Minimal value";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // ExecutePrimaButton
             // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Draw";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.ExecutePrimaButton.Location = new System.Drawing.Point(3, 3);
+            this.ExecutePrimaButton.Name = "ExecutePrimaButton";
+            this.ExecutePrimaButton.Size = new System.Drawing.Size(75, 23);
+            this.ExecutePrimaButton.TabIndex = 0;
+            this.ExecutePrimaButton.Text = "Draw";
+            this.ExecutePrimaButton.UseVisualStyleBackColor = true;
+            this.ExecutePrimaButton.Click += new System.EventHandler(this.ExecutePrimaButtonClick);
             // 
             // pictureBox2
             // 
@@ -287,7 +287,7 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.ExecuteHamilton);
+            this.tabPage5.Controls.Add(this.ExecuteHamiltonButton);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -298,13 +298,13 @@
             // 
             // ExecuteHamilton
             // 
-            this.ExecuteHamilton.Location = new System.Drawing.Point(861, 6);
-            this.ExecuteHamilton.Name = "ExecuteHamilton";
-            this.ExecuteHamilton.Size = new System.Drawing.Size(85, 30);
-            this.ExecuteHamilton.TabIndex = 0;
-            this.ExecuteHamilton.Text = "Hamilton";
-            this.ExecuteHamilton.UseVisualStyleBackColor = true;
-            this.ExecuteHamilton.Click += new System.EventHandler(this.ExecuteHamilton_Click);
+            this.ExecuteHamiltonButton.Location = new System.Drawing.Point(861, 6);
+            this.ExecuteHamiltonButton.Name = "ExecuteHamilton";
+            this.ExecuteHamiltonButton.Size = new System.Drawing.Size(85, 30);
+            this.ExecuteHamiltonButton.TabIndex = 0;
+            this.ExecuteHamiltonButton.Text = "Hamilton";
+            this.ExecuteHamiltonButton.UseVisualStyleBackColor = true;
+            this.ExecuteHamiltonButton.Click += new System.EventHandler(this.ExecuteHamiltonButtonClick);
             // 
             // tabPage6
             // 
@@ -316,7 +316,6 @@
             this.tabPage6.TabIndex = 7;
             this.tabPage6.Text = "Adjacency";
             this.tabPage6.UseVisualStyleBackColor = true;
-            this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
             // 
             // dataGridView3
             // 
@@ -327,7 +326,6 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(940, 499);
             this.dataGridView3.TabIndex = 0;
-            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // Column1
             // 
@@ -360,7 +358,7 @@
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -370,7 +368,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Matrix analyzer";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.MainFormLoad);
             this.TabView.ResumeLayout(false);
             this.Table.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -399,10 +397,10 @@
         private System.Windows.Forms.TabPage Matrix;
         private System.Windows.Forms.Button button_Save;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button_Save_Mutrix;
+        private System.Windows.Forms.Button SaveMatrixButton;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button button_add_Rows;
-        private System.Windows.Forms.Button button_Add_Row_Colum;
+        private System.Windows.Forms.Button AddConnectionButton;
+        private System.Windows.Forms.Button AddNodeToMatrixButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn x1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button DrawGraphButton;
@@ -412,10 +410,10 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ExecutePrimaButton;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button ExecuteHamilton;
+        private System.Windows.Forms.Button ExecuteHamiltonButton;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
