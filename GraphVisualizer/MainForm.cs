@@ -112,8 +112,13 @@ namespace GraphVisualizer
 
                 _nodeConnections.Add(new NodeConnection(dataGridView1[i, 0].Value.ToString(), dataGridView1[i, 1].Value.ToString(), dataGridView1[i, 2].Value.ToString()));
             }
-            CreateMatrix();
-            CreateAdjacencyMatrix();
+            
+            _matrix = ConvertTableToMatrixOfWeights(_nodeConnections);
+            FillDataGridView(dataGridView2, _matrix);
+
+            _adjacencyMatrix =  ConvertMatrixOfWeightsToAdjacencyMatrix(_matrix);
+            FillDataGridView(dataGridView3, _adjacencyMatrix);
+
             CreateIncidencyMatrix();
         }
 
@@ -176,21 +181,21 @@ namespace GraphVisualizer
             }
         }
 
-        private void CreateAdjacencyMatrix()
+        private string[,] ConvertMatrixOfWeightsToAdjacencyMatrix(string[,] matrixOfWeights)
         {
-            var adjMatrix = new string[_matrix.GetLength(0), _matrix.GetLength(1)];
+            var adjMatrix = new string[matrixOfWeights.GetLength(0), matrixOfWeights.GetLength(1)];
 
-            for (int i = 0; i < _matrix.GetLength(0); i++)
+            for (int i = 0; i < matrixOfWeights.GetLength(0); i++)
             {
-                adjMatrix[0, i] = _matrix[0, i];
-                adjMatrix[i, 0] = _matrix[i, 0];
+                adjMatrix[0, i] = matrixOfWeights[0, i];
+                adjMatrix[i, 0] = matrixOfWeights[i, 0];
             }
 
-            for (int i = 1; i < _matrix.GetLength(0); i++)
+            for (int i = 1; i < matrixOfWeights.GetLength(0); i++)
             {
-                for (int j = 1; j < _matrix.GetLength(1); j++)
+                for (int j = 1; j < matrixOfWeights.GetLength(1); j++)
                 {
-                    if (Convert.ToInt32(_matrix[i, j]) == 0)
+                    if (Convert.ToInt32(matrixOfWeights[i, j]) == 0)
                     {
                         adjMatrix[i, j] = "0";
                     }
@@ -201,24 +206,10 @@ namespace GraphVisualizer
                 }
             }
 
-            _adjacencyMatrix = adjMatrix;
-
-            for (int i = 0; i < _matrix.GetLength(0) - 1; i++)
-            {
-                dataGridView3.Columns.Add($"Column{i}", ">");
-                dataGridView3.Rows.Add();
-            }
-
-            for (int i = 0; i < adjMatrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < adjMatrix.GetLength(1); j++)
-                {
-                    dataGridView3[i, j].Value = adjMatrix[i, j];
-                }
-            }
+            return adjMatrix;
         }
 
-        void CreateMatrix()
+        private string[,] ConvertTableToMatrixOfWeights(List<NodeConnection> nodeConnections)
         {
             var list = new List<string>();
             list.Add("0");
@@ -270,24 +261,38 @@ namespace GraphVisualizer
                 matrixList[val2][val1] = item.Weight;
             }
 
-            for (int i = 0; i < matrixList.Count - 1; i++)
-            {
-                dataGridView2.Columns.Add($"Column{i}", ">");
-                dataGridView2.Rows.Add();
-            }
-
             var matrix = new string[list.Count, list.Count];
 
             for (int i = 0; i < matrixList.Count; i++)
             {
                 for (int j = 0; j < list.Count; j++)
                 {
-                    dataGridView2[i, j].Value = matrixList[i][j];
                     matrix[i, j] = matrixList[i][j];
                 }
             }
 
-            _matrix = matrix;
+            return matrix;
+        }
+
+        private void FillDataGridView(DataGridView dataGridView, string[,] listOfElements)
+        {
+            for (int i = 0; i < listOfElements.GetLength(0) - 1; i++)
+            {
+                dataGridView.Columns.Add($"Column{i}", ">");
+            }
+
+            for (int i = 0; i < listOfElements.GetLength(1) - 1; i++)
+            {
+                dataGridView.Rows.Add();
+            }
+
+            for (int i = 0; i < listOfElements.GetLength(0); i++)
+            {
+                for (int j = 0; j < listOfElements.GetLength(1); j++)
+                {
+                    dataGridView[i, j].Value = listOfElements[i, j];
+                }
+            }
         }
 
         void PaintToWhite()
