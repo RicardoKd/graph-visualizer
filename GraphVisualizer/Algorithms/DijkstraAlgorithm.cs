@@ -1,101 +1,78 @@
-﻿using System.Collections.Generic;
-using GraphVisualizer.GraphStructure;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace GraphVisualizer.Algorithms
 {
-    class dij_element //element_for_Dijkstra
+    public class DijkstraAlgorithm
     {
-        public string v;
-        public int weight;
-        public bool check;
+        private int _verticesCount;
+        private int[,] _matrix;
 
-        public dij_element(int weight, string v, bool check)
+        public DijkstraAlgorithm(int[,] matrix)
         {
-            this.weight = weight;
-            this.v = v;
-            this.check = check;
-        }
-    }
-
-    class Edge //element for graph of minimal cost
-    {
-        public string v1, v2;
-        public int weight;
-        public Edge(string v1, string v2, int weight)
-        {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.weight = weight;
+            _matrix = matrix;
+            _verticesCount = matrix.GetLength(0);
         }
 
-    }
-
-    public static class DijkstraAlgorithm
-    { //: IDijkstra {
-
-        public static string[][] Dijkstra_algorithm(Graph graph) //Dijkstra's algorithm
+        public List<List<string>> Calculate()
         {
-            string[][] result = new string[graph.Vertices.Count][];
-            for (int i = 0; i < graph.Vertices.Count; i++)
+            List<List<string>> result = new List<List<string>>();
+            for (int i = 0; i < _verticesCount; i++)
             {
-                result[i] = Dijkstra_algorithm_for_one_element(graph, graph.Vertices[i]);
+                result.Add(Dijkstra(i));
             }
             return result;
         }
 
-        public static string[] Dijkstra_algorithm_for_one_element(Graph graph, GraphVertex start)//Dijkstra's algorithm for one vertex
+        private int MinimumDistance(int[] distance, bool[] shortestPathTreeSet)
         {
-            string[] result = new string[graph.Vertices.Count];
-            dij_element[] arr = new dij_element[graph.Vertices.Count];
-            int ind_start = graph.Vertices.IndexOf(start);
-            int connectedVer;
-            int kolvo_true = 0, k = 0;
-            int minweight = -1, prev = -1;
-            for (int i = 0; i < graph.Vertices.Count; i++)
-            {
-                if (i == ind_start) { arr[i] = new dij_element(0, start.Name, true); kolvo_true++; prev = 0; }
-                else
-                    arr[i] = new dij_element(-1, start.Name, false);
-            }
-            int now_ind = ind_start;
+            int min = int.MaxValue;
+            int minIndex = 0;
 
-            while (kolvo_true <= graph.Vertices.Count)
+            for (int v = 0; v < _verticesCount; ++v)
             {
-                for (int i = 0; i < graph.Vertices[now_ind].Edges.Count; i++)
+                if (shortestPathTreeSet[v] == false && distance[v] <= min)
                 {
-                    connectedVer = graph.Vertices.IndexOf(graph.Vertices[now_ind].Edges[i].ConnectedVertex);
-                    if ((arr[connectedVer].weight == -1 || arr[connectedVer].weight > (graph.Vertices[now_ind].Edges[i].EdgeWeight) + prev)
-                        && arr[connectedVer].check == false)
-                    {
-                        arr[connectedVer] = new dij_element(graph.Vertices[now_ind].Edges[i].EdgeWeight + prev, graph.Vertices[now_ind].Name, false);
-                    }
+                    min = distance[v];
+                    minIndex = v;
                 }
-                for (int i = 0; i < arr.Length; i++)
-                {
-
-                    if (arr[i].check == false)
-                    {
-                        if (k == 0 && arr[i].weight != -1) { minweight = arr[i].weight; now_ind = i; }
-                        k++;
-                        if (arr[i].weight == -1) k--;
-                        if (arr[i].weight > 0 && minweight > arr[i].weight)
-                        {
-                            minweight = arr[i].weight;
-                            now_ind = i;
-                        }
-                    }
-
-                }
-                arr[now_ind].check = true;
-                kolvo_true++;
-                prev = arr[now_ind].weight;
-                k = 0;
             }
-            for (int i = 0; i < arr.Length; i++)
+
+            return minIndex;
+        }
+
+        private List<string> Dijkstra(int source)
+        {
+            int[] distance = new int[_verticesCount];
+            bool[] shortestPathTreeSet = new bool[_verticesCount];
+
+            for (int i = 0; i < _verticesCount; ++i)
             {
-                result[i] = "(" + arr[i].weight + ", " + arr[i].v + ")";
+                distance[i] = int.MaxValue;
+                shortestPathTreeSet[i] = false;
             }
-            return result;
+
+            distance[source] = 0;
+
+            for (int count = 0; count < _verticesCount - 1; ++count)
+            {
+                int u = MinimumDistance(distance, shortestPathTreeSet);
+                shortestPathTreeSet[u] = true;
+
+                for (int v = 0; v < _verticesCount; ++v)
+                    if (!shortestPathTreeSet[v] && Convert.ToBoolean(_matrix[u, v]) && distance[u] != int.MaxValue && distance[u] + _matrix[u, v] < distance[v])
+                        distance[v] = distance[u] + _matrix[u, v];
+            }
+
+            var list = new List<string>();
+            for (int i = 0; i < _verticesCount; ++i)
+            {
+                list.Add(Convert.ToString(i));
+                list.Add(Convert.ToString(distance[i]));
+            }
+
+            return list;
         }
     }
 }

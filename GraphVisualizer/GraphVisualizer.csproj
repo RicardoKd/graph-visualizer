@@ -218,14 +218,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Structures\NodeConnection.cs" />
-    <Compile Include="Structures\GraphStructure\Graph.cs" />
-    <Compile Include="Structures\GraphStructure\GraphEdge.cs" />
-    <Compile Include="Structures\GraphStructure\GraphVertex.cs" />
     <Compile Include="Algorithms\HamiltonAlgorithm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

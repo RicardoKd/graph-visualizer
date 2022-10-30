@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using GraphVisualizer.Algorithms;
 using GraphVisualizer.Helpers;
@@ -291,6 +289,43 @@ namespace GraphVisualizer
 
             var drawGraph = new DrawGraphModel(pictureBox1, Convertors.TableToMatrixOfWeights(table));
             drawGraph.button1_Click(this, EventArgs.Empty);
+        }
+
+        private void ExecuteDijkstrasAlgorithmButtonClick(object sender, EventArgs e)
+        {
+            int[,] matrix = new int[_matrix.GetLength(0) - 1, _matrix.GetLength(1) - 1];
+
+            for (int i = 1; i < _matrix.GetLength(0); i++)
+            {
+                for (int j = 1; j < _matrix.GetLength(1); j++)
+                {
+                    matrix[i - 1, j - 1] = Convert.ToInt32(_matrix[i, j]);
+                }
+            }
+
+            var result = new DijkstraAlgorithm(matrix).Calculate();
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                for (int j = 0; j < result[i].Count; j+=2)
+                {
+                    result[i][j] = _matrix[0, Convert.ToInt32(result[i][j]) + 1];
+                }
+            }
+
+            string output = "";
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                output += $"Node {_matrix[0, i + 1]}:->";
+                for (int j = 0; j < result[i].Count; j += 2)
+                {
+                    output += $"({result[i][j]}, {result[i][j + 1]}) ";
+                }
+                output += "\n";
+            }
+
+            MessageBox.Show(output);
         }
     }
 }
