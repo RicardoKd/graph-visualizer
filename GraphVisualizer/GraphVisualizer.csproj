@@ -207,6 +207,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\CenterSearchAlgorithm.cs" />
     <Compile Include="Algorithms\DijkstraAlgorithm.cs" />
     <Compile Include="Algorithms\PrimsAlgorithm.cs" />
     <Compile Include="Helpers\Convertors.cs" />

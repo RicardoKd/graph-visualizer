@@ -56,6 +56,9 @@
             this.button_Save = new System.Windows.Forms.Button();
             this.NodeConnectionsDataGridView = new System.Windows.Forms.DataGridView();
             this.TabView = new System.Windows.Forms.TabControl();
+            this.CenterSearchButton = new System.Windows.Forms.Button();
+            this.DijkstraMatrixDataGridView = new System.Windows.Forms.DataGridView();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IncidencyTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IncidencyMatrixDataGridView)).BeginInit();
             this.AdjacencyTabPage.SuspendLayout();
@@ -69,6 +72,7 @@
             this.TableTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NodeConnectionsDataGridView)).BeginInit();
             this.TabView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DijkstraMatrixDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // IncidencyTabPage
@@ -127,6 +131,7 @@
             // 
             // HamiltonTabPage
             // 
+            this.HamiltonTabPage.Controls.Add(this.CenterSearchButton);
             this.HamiltonTabPage.Controls.Add(this.HamiltonLengthLabel);
             this.HamiltonTabPage.Controls.Add(this.HamiltonResultLabel);
             this.HamiltonTabPage.Controls.Add(this.ExecuteHamiltonButton);
@@ -168,6 +173,7 @@
             // 
             // DijkstraTabPage
             // 
+            this.DijkstraTabPage.Controls.Add(this.DijkstraMatrixDataGridView);
             this.DijkstraTabPage.Controls.Add(this.ExecuteDijkstrasAlgorithmButton);
             this.DijkstraTabPage.Controls.Add(this.textBox2);
             this.DijkstraTabPage.Location = new System.Drawing.Point(4, 22);
@@ -360,6 +366,32 @@
             this.TabView.Size = new System.Drawing.Size(960, 537);
             this.TabView.TabIndex = 0;
             // 
+            // CenterSearchButton
+            // 
+            this.CenterSearchButton.Location = new System.Drawing.Point(770, 6);
+            this.CenterSearchButton.Name = "CenterSearchButton";
+            this.CenterSearchButton.Size = new System.Drawing.Size(85, 30);
+            this.CenterSearchButton.TabIndex = 3;
+            this.CenterSearchButton.Text = "Center";
+            this.CenterSearchButton.UseVisualStyleBackColor = true;
+            this.CenterSearchButton.Click += new System.EventHandler(this.CenterSearchButton_Click);
+            // 
+            // DijkstraMatrixDataGridView
+            // 
+            this.DijkstraMatrixDataGridView.AllowUserToAddRows = false;
+            this.DijkstraMatrixDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DijkstraMatrixDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column3});
+            this.DijkstraMatrixDataGridView.Location = new System.Drawing.Point(3, 66);
+            this.DijkstraMatrixDataGridView.Name = "DijkstraMatrixDataGridView";
+            this.DijkstraMatrixDataGridView.Size = new System.Drawing.Size(937, 431);
+            this.DijkstraMatrixDataGridView.TabIndex = 2;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Column3";
+            this.Column3.Name = "Column3";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,6 +419,7 @@
             this.TableTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NodeConnectionsDataGridView)).EndInit();
             this.TabView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DijkstraMatrixDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -421,6 +454,9 @@
         private System.Windows.Forms.Button button_Save;
         private System.Windows.Forms.DataGridView NodeConnectionsDataGridView;
         private System.Windows.Forms.TabControl TabView;
+        private System.Windows.Forms.Button CenterSearchButton;
+        private System.Windows.Forms.DataGridView DijkstraMatrixDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 

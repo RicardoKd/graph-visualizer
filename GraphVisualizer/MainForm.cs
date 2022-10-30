@@ -15,6 +15,8 @@ namespace GraphVisualizer
         private string[,] _matrix;
         private string[,] _adjacencyMatrix;
         private string[,] _incidencyMatrix;
+        private string[,] _primsMatrix;
+        private string[,] _dijkstraMatrix;
         private List<NodeConnection> _nodeConnections = new List<NodeConnection>();
 
         public MainForm()
@@ -132,7 +134,7 @@ namespace GraphVisualizer
 
                 _nodeConnections.Add(new NodeConnection(NodeConnectionsDataGridView[i, 0].Value.ToString(), NodeConnectionsDataGridView[i, 1].Value.ToString(), NodeConnectionsDataGridView[i, 2].Value.ToString()));
             }
-            
+
             _matrix = Convertors.TableToMatrixOfWeights(_nodeConnections);
             FillDataGridView(MatrixOfWeightsDataGridView, _matrix);
 
@@ -280,14 +282,16 @@ namespace GraphVisualizer
             }
 
             var table = new PrimsAlgorithm(matrix).ExecutePrimsAlgorithm();
-            //var minimalValGraph = PrimasAlgorithm.ExecutePrimasAlgorithm(_graph);
+
             for (int i = 0; i < table.Count; i++)
             {
                 table[i].FirstPoint = Convert.ToString(_matrix[0, Convert.ToInt32(table[i].FirstPoint) + 1]);
                 table[i].SecondPoint = Convert.ToString(_matrix[0, Convert.ToInt32(table[i].SecondPoint) + 1]);
             }
 
-            var drawGraph = new DrawGraphModel(pictureBox1, Convertors.TableToMatrixOfWeights(table));
+            _primsMatrix = Convertors.TableToMatrixOfWeights(table);
+
+            var drawGraph = new DrawGraphModel(pictureBox1, _primsMatrix);
             drawGraph.button1_Click(this, EventArgs.Empty);
         }
 
@@ -307,11 +311,34 @@ namespace GraphVisualizer
 
             for (int i = 0; i < result.Count; i++)
             {
-                for (int j = 0; j < result[i].Count; j+=2)
+                for (int j = 0; j < result[i].Count; j += 2)
                 {
                     result[i][j] = _matrix[0, Convert.ToInt32(result[i][j]) + 1];
                 }
             }
+
+            var dijkstraMatrix = new string[_matrix.GetLength(0), _matrix.GetLength(0)];
+
+            for (int i = 0; i < _matrix.GetLength(0); i++)
+            {
+                dijkstraMatrix[0, i] = _matrix[0, i];
+                dijkstraMatrix[i, 0] = _matrix[i, 0];
+            }
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                //_matrix[0, i + 1];
+                for (int j = 0; j < result[i].Count; j += 2)
+                {
+                    dijkstraMatrix[i + 1, j / 2 + 1] = result[i][j + 1];
+                }
+                //output += "\n";
+            }
+
+            _dijkstraMatrix = dijkstraMatrix;
+            FillDataGridView(DijkstraMatrixDataGridView, dijkstraMatrix);
+
+
 
             string output = "";
 
@@ -326,6 +353,66 @@ namespace GraphVisualizer
             }
 
             MessageBox.Show(output);
+        }
+
+        private void CenterSearchButton_Click(object sender, EventArgs e)
+        {
+            int max = 0;
+            int min = 0;
+            var listOfMaxes = new List<int>();
+            var listOfMins = new List<int>();
+            for (int i = 1; i < _dijkstraMatrix.GetLength(0); i++)
+            {
+                for (int j = 1; j < _dijkstraMatrix.GetLength(0); j++)
+                {
+                    if (Convert.ToInt32(_dijkstraMatrix[i, j]) > max)
+                    {
+                        max = Convert.ToInt32(_dijkstraMatrix[i, j]);
+                    }
+                }
+                listOfMaxes.Add(max);
+            }
+
+            min = listOfMaxes[0];
+            for (int i = 1; i < listOfMaxes.Count; i++)
+            {
+                if (listOfMaxes[i] < min)
+                {
+                    min = listOfMaxes[i];
+                }
+            }
+
+            listOfMins.Add(min);
+
+            for (int i = 1; i < listOfMaxes.Count; i++)
+            {
+                if (listOfMaxes[i] == min)
+                {
+                    listOfMins.Add(min);
+                }
+            }
+
+            //int[,] matrix = new int[_matrix.GetLength(0) - 1, _matrix.GetLength(1) - 1];
+
+            //for (int i = 1; i < _matrix.GetLength(0); i++)
+            //{
+            //    for (int j = 1; j < _matrix.GetLength(1); j++)
+            //    {
+            //        matrix[i - 1, j - 1] = Convert.ToInt32(_matrix[i, j]);
+            //    }
+            //}
+
+            //int[,] primsMatrix = new int[_primsMatrix.GetLength(0) - 1, _primsMatrix.GetLength(1) - 1];
+
+            //for (int i = 1; i < _primsMatrix.GetLength(0); i++)
+            //{
+            //    for (int j = 1; j < _primsMatrix.GetLength(1); j++)
+            //    {
+            //        primsMatrix[i - 1, j - 1] = Convert.ToInt32(_primsMatrix[i, j]);
+            //    }
+            //}
+
+            //new CenterSearchAlgorithm(primsMatrix, matrix).Execute();
         }
     }
 }
