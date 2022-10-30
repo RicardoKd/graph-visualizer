@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -47,15 +48,35 @@ namespace GraphVisualizer
             //    dataGridView1.Rows[2].Cells[i + 1].Value = i;
             //    val = i;
             //}
-            Random random = new Random();
-            for (int i = val; i < 5; i++)
-            {
-                dataGridView1.Columns.Add($"Column{i}", ">");
-                dataGridView1.Rows[0].Cells[i].Value = random.Next(0, 1000);
-                dataGridView1.Rows[1].Cells[i].Value = random.Next(0, 1000);
-                dataGridView1.Rows[2].Cells[i].Value = random.Next(0, 1000);
-                val = i;
-            }
+            //Random random = new Random();
+            //for (int i = val; i < 5; i++)
+            //{
+            //    dataGridView1.Columns.Add($"Column{i}", ">");
+            //    dataGridView1.Rows[0].Cells[i].Value = random.Next(0, 1000);
+            //    dataGridView1.Rows[1].Cells[i].Value = random.Next(0, 1000);
+            //    dataGridView1.Rows[2].Cells[i].Value = random.Next(0, 1000);
+            //    val = i;
+            //}
+
+            dataGridView1.Columns.Add($"Column{1}", ">");
+            dataGridView1.Rows[0].Cells[1].Value = "689";
+            dataGridView1.Rows[1].Cells[1].Value = "721";
+            dataGridView1.Rows[2].Cells[1].Value = "40";
+
+            dataGridView1.Columns.Add($"Column{2}", ">");
+            dataGridView1.Rows[0].Cells[2].Value = "721";
+            dataGridView1.Rows[1].Cells[2].Value = "555";
+            dataGridView1.Rows[2].Cells[2].Value = "50";
+
+            dataGridView1.Columns.Add($"Column{3}", ">");
+            dataGridView1.Rows[0].Cells[3].Value = "555";
+            dataGridView1.Rows[1].Cells[3].Value = "843";
+            dataGridView1.Rows[2].Cells[3].Value = "60";
+
+            dataGridView1.Columns.Add($"Column{4}", ">");
+            dataGridView1.Rows[0].Cells[4].Value = "843";
+            dataGridView1.Rows[1].Cells[4].Value = "689";
+            dataGridView1.Rows[2].Cells[4].Value = "70";
 
             //dataGridView1.Columns.Add($"Column{val}", ">");
             //dataGridView1.Rows[0].Cells[val + 1].Value = 3;
@@ -332,17 +353,31 @@ namespace GraphVisualizer
         {
             int[] path;
 
-            int[,] matrix = new int[_adjacencyMatrix.GetLength(0), _adjacencyMatrix.GetLength(1)];
+            int[,] matrix = new int[_adjacencyMatrix.GetLength(0) - 1, _adjacencyMatrix.GetLength(1) - 1];
 
-            for (int i = 0; i < _adjacencyMatrix.GetLength(0); i++)
+            for (int i = 1; i < _adjacencyMatrix.GetLength(0); i++)
             {
-                for (int j = 0; j < _adjacencyMatrix.GetLength(1); j++)
+                for (int j = 1; j < _adjacencyMatrix.GetLength(1); j++)
                 {
-                    matrix[i, j] = Convert.ToInt32(_adjacencyMatrix[i, j]);
+                    matrix[i - 1, j - 1] = Convert.ToInt32(_adjacencyMatrix[i, j]);
                 }
             }
 
-            new HamiltonAlgorithm(matrix).Calculate(out path);
+            var hamiltonCycle = new HamiltonAlgorithm(matrix);
+            if (!hamiltonCycle.Calculate(out path))
+            {
+                MessageBox.Show("There is no Hamiltonian path in the given graph");
+                return;
+            }
+
+            string output = string.Empty;
+            for (int i = 0; i < path.Length; i++)
+            {
+                output += _adjacencyMatrix[path[i] + 1, 0] + "->";
+            }
+            output += _adjacencyMatrix[path[0] + 1, 0];
+            HamiltonResultLabel.Text = "Cycle: " + output;
+            HamiltonLengthLabel.Text = "Length: " + path.Length;
         }
 
         private void SaveMatrixButtonClick(object sender, EventArgs e)

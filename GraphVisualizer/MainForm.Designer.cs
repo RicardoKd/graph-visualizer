@@ -49,6 +49,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.HamiltonLengthLabel = new System.Windows.Forms.Label();
+            this.HamiltonResultLabel = new System.Windows.Forms.Label();
             this.ExecuteHamiltonButton = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -125,8 +127,8 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -221,8 +223,8 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(7, 7);
             this.pictureBox1.Name = "pictureBox1";
@@ -287,6 +289,8 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.HamiltonLengthLabel);
+            this.tabPage5.Controls.Add(this.HamiltonResultLabel);
             this.tabPage5.Controls.Add(this.ExecuteHamiltonButton);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
@@ -296,10 +300,28 @@
             this.tabPage5.Text = "Hamilton";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // ExecuteHamilton
+            // HamiltonLengthLabel
+            // 
+            this.HamiltonLengthLabel.AutoSize = true;
+            this.HamiltonLengthLabel.Location = new System.Drawing.Point(6, 62);
+            this.HamiltonLengthLabel.Name = "HamiltonLengthLabel";
+            this.HamiltonLengthLabel.Size = new System.Drawing.Size(130, 13);
+            this.HamiltonLengthLabel.TabIndex = 2;
+            this.HamiltonLengthLabel.Text = "Length will be shown here";
+            // 
+            // HamiltonResultLabel
+            // 
+            this.HamiltonResultLabel.AutoSize = true;
+            this.HamiltonResultLabel.Location = new System.Drawing.Point(6, 32);
+            this.HamiltonResultLabel.Name = "HamiltonResultLabel";
+            this.HamiltonResultLabel.Size = new System.Drawing.Size(127, 13);
+            this.HamiltonResultLabel.TabIndex = 1;
+            this.HamiltonResultLabel.Text = "Result will be shown here";
+            // 
+            // ExecuteHamiltonButton
             // 
             this.ExecuteHamiltonButton.Location = new System.Drawing.Point(861, 6);
-            this.ExecuteHamiltonButton.Name = "ExecuteHamilton";
+            this.ExecuteHamiltonButton.Name = "ExecuteHamiltonButton";
             this.ExecuteHamiltonButton.Size = new System.Drawing.Size(85, 30);
             this.ExecuteHamiltonButton.TabIndex = 0;
             this.ExecuteHamiltonButton.Text = "Hamilton";
@@ -365,7 +387,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(31)))), ((int)(((byte)(46)))));
             this.ClientSize = new System.Drawing.Size(985, 561);
             this.Controls.Add(this.TabView);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Matrix analyzer";
             this.Load += new System.EventHandler(this.MainFormLoad);
@@ -382,6 +404,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage7.ResumeLayout(false);
@@ -420,6 +443,8 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.Label HamiltonResultLabel;
+        private System.Windows.Forms.Label HamiltonLengthLabel;
     }
 }
 

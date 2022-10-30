@@ -2,29 +2,26 @@
 {
     public class HamiltonAlgorithm
     {
-        private int _quantityOfVertices;
-        private int[,] _adjacencyMatrix;
+        private int _numberOfVertices;
         private int[] _path;
+        private int[,] _matrix;
 
-        public HamiltonAlgorithm(int[,] adjacencyMatrix)
+        public HamiltonAlgorithm(int[,] matrix)
         {
-            _adjacencyMatrix = adjacencyMatrix;
-            _quantityOfVertices = adjacencyMatrix.GetLength(0) - 1;
-            _path = new int[_quantityOfVertices];
-
-            for (int i = 0; i < _quantityOfVertices; i++)
-            {
-                _path[i] = -1;
-            }
-
-            _path[0] = 0;
+            _matrix = matrix;
+            _numberOfVertices = _matrix.GetLength(0);
         }
 
         public bool Calculate(out int[] path)
         {
-            path = new int[_quantityOfVertices];
+            path = new int[_numberOfVertices];
+            
+            _path = new int[_numberOfVertices];
+            for (int i = 0; i < _numberOfVertices; i++)
+                _path[i] = -1;
 
-            if (HamiltonCycle())
+            _path[0] = 0;
+            if (ProcessHamCycle())
             {
                 path = _path;
                 return true;
@@ -33,48 +30,42 @@
             return false;
         }
 
-        private bool HamiltonCycle(int pos = 1)
-        {
-            if (pos == _quantityOfVertices)
-            {
-                if (_adjacencyMatrix[_path[pos - 1], _path[0]] == 1)
-                {
-                    return true;
-                }
-
-                return false;
-            }
-
-            for (int i = 1; i < _quantityOfVertices; i++)
-            {
-                if (IsSafe(i, pos))
-                {
-                    _path[pos] = i;
-
-                    if (HamiltonCycle(pos + 1))
-                    {
-                        return true;
-                    }
-
-                    _path[pos] = -1;
-                }
-            }
-
-            return false;
-        }
-
         private bool IsSafe(int v, int pos)
         {
-            if (_adjacencyMatrix[_path[pos - 1], v] == 0)
-            {
+            if (_matrix[_path[pos - 1], v] == 0)
                 return false;
-            }
 
             for (int i = 0; i < pos; i++)
                 if (_path[i] == v)
                     return false;
 
             return true;
+        }
+
+        private bool ProcessHamCycle(int pos = 1)
+        {
+            if (pos == _numberOfVertices)
+            {
+                if (_matrix[_path[pos - 1], _path[0]] == 1)
+                    return true;
+                else
+                    return false;
+            }
+
+            for (int v = 1; v < _numberOfVertices; v++)
+            {
+                if (IsSafe(v, pos))
+                {
+                    _path[pos] = v;
+
+                    if (ProcessHamCycle(pos + 1) == true)
+                        return true;
+
+                    _path[pos] = -1;
+                }
+            }
+
+            return false;
         }
     }
 }
