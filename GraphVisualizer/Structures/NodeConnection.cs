@@ -1,10 +1,10 @@
 ﻿namespace GraphVisualizer.Structures
 {
-    public struct NodeConnection
+    public class NodeConnection
     {
-        public string FirstPoint;
-        public string SecondPoint;
-        public string Weight;
+        public string FirstPoint { get; set; }
+        public string SecondPoint { get; set; }
+        public string Weight { get; set; }
 
         public NodeConnection(string firstPoint, string secondPoint, string weight)
         {
