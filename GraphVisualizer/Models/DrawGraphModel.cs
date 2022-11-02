@@ -24,6 +24,24 @@ namespace GraphVisualizer.Models
             { "0", "0", "1", "1", "0", "3" },
             { "0", "0", "0", "0", "3", "1" }
         };
+        public void MoveGraphUp() {
+            g.TranslateTransform(0, -100);
+            Render();
+        }
+        public void MoveGraphDown() {
+            g.TranslateTransform(0, 100);
+            Render();
+        }
+
+        public void MoveGraphRight() {
+            g.TranslateTransform(100, 0);
+            Render();
+        }
+
+        public void MoveGraphLeft() {
+            g.TranslateTransform(-100, 0);
+            Render();
+        }
 
         public DrawGraphModel(PictureBox pictureBox, string[,] matrix)
         {

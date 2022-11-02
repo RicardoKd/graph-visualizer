@@ -417,16 +417,28 @@ namespace GraphVisualizer
 
             //new CenterSearchAlgorithm(primsMatrix, matrix).Execute();
         }
-
-        private void Increase_Scale_Click(object sender, EventArgs e) {
-
-        }
         private void Increase_Scale_Click_1(object sender, EventArgs e) {
             drawGraph.IncreaseScale();
         }
 
         private void Decrease_Scale_Click(object sender, EventArgs e) {
             drawGraph.DecreaseScale();
+        }
+
+        private void MoveRightBtn_Click(object sender, EventArgs e) {
+            drawGraph.MoveGraphRight();
+        }
+
+        private void MoveLeft_Click(object sender, EventArgs e) {
+            drawGraph.MoveGraphLeft();
+        }
+
+        private void MoveUp_Click(object sender, EventArgs e) {
+            drawGraph.MoveGraphUp();
+        }
+
+        private void MoveDown_Click(object sender, EventArgs e) {
+            drawGraph.MoveGraphDown();
         }
     }
 }

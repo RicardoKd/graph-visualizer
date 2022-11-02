@@ -45,6 +45,8 @@
             this.ExecuteDijkstrasAlgorithmButton = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.GraphViewTabPage = new System.Windows.Forms.TabPage();
+            this.Decrease_Scale = new System.Windows.Forms.Button();
+            this.Increase_Scale = new System.Windows.Forms.Button();
             this.DrawPrimButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.DrawGraphButton = new System.Windows.Forms.Button();
@@ -59,8 +61,10 @@
             this.button_Save = new System.Windows.Forms.Button();
             this.NodeConnectionsDataGridView = new System.Windows.Forms.DataGridView();
             this.TabView = new System.Windows.Forms.TabControl();
-            this.Decrease_Scale = new System.Windows.Forms.Button();
-            this.Increase_Scale = new System.Windows.Forms.Button();
+            this.MoveRight = new System.Windows.Forms.Button();
+            this.MoveUp = new System.Windows.Forms.Button();
+            this.MoveDown = new System.Windows.Forms.Button();
+            this.MoveLeft = new System.Windows.Forms.Button();
             this.IncidencyTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IncidencyMatrixDataGridView)).BeginInit();
             this.AdjacencyTabPage.SuspendLayout();
@@ -242,6 +246,10 @@
             // 
             // GraphViewTabPage
             // 
+            this.GraphViewTabPage.Controls.Add(this.MoveLeft);
+            this.GraphViewTabPage.Controls.Add(this.MoveDown);
+            this.GraphViewTabPage.Controls.Add(this.MoveUp);
+            this.GraphViewTabPage.Controls.Add(this.MoveRight);
             this.GraphViewTabPage.Controls.Add(this.Decrease_Scale);
             this.GraphViewTabPage.Controls.Add(this.Increase_Scale);
             this.GraphViewTabPage.Controls.Add(this.DrawPrimButton);
@@ -255,6 +263,32 @@
             this.GraphViewTabPage.TabIndex = 2;
             this.GraphViewTabPage.Text = "Graph view";
             this.GraphViewTabPage.UseVisualStyleBackColor = true;
+            // 
+            // Decrease_Scale
+            // 
+            this.Decrease_Scale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.Decrease_Scale.FlatAppearance.BorderSize = 0;
+            this.Decrease_Scale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Decrease_Scale.Location = new System.Drawing.Point(889, 499);
+            this.Decrease_Scale.Name = "Decrease_Scale";
+            this.Decrease_Scale.Size = new System.Drawing.Size(80, 25);
+            this.Decrease_Scale.TabIndex = 6;
+            this.Decrease_Scale.Text = "-";
+            this.Decrease_Scale.UseVisualStyleBackColor = false;
+            this.Decrease_Scale.Click += new System.EventHandler(this.Decrease_Scale_Click);
+            // 
+            // Increase_Scale
+            // 
+            this.Increase_Scale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.Increase_Scale.FlatAppearance.BorderSize = 0;
+            this.Increase_Scale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Increase_Scale.Location = new System.Drawing.Point(889, 468);
+            this.Increase_Scale.Name = "Increase_Scale";
+            this.Increase_Scale.Size = new System.Drawing.Size(80, 25);
+            this.Increase_Scale.TabIndex = 5;
+            this.Increase_Scale.Text = "+";
+            this.Increase_Scale.UseVisualStyleBackColor = false;
+            this.Increase_Scale.Click += new System.EventHandler(this.Increase_Scale_Click_1);
             // 
             // DrawPrimButton
             // 
@@ -428,31 +462,57 @@
             this.TabView.Size = new System.Drawing.Size(985, 561);
             this.TabView.TabIndex = 0;
             // 
-            // Decrease_Scale
+            // MoveRight
             // 
-            this.Decrease_Scale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
-            this.Decrease_Scale.FlatAppearance.BorderSize = 0;
-            this.Decrease_Scale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Decrease_Scale.Location = new System.Drawing.Point(880, 473);
-            this.Decrease_Scale.Name = "Decrease_Scale";
-            this.Decrease_Scale.Size = new System.Drawing.Size(80, 25);
-            this.Decrease_Scale.TabIndex = 6;
-            this.Decrease_Scale.Text = "-";
-            this.Decrease_Scale.UseVisualStyleBackColor = false;
-            this.Decrease_Scale.Click += new System.EventHandler(this.Decrease_Scale_Click);
+            this.MoveRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.MoveRight.FlatAppearance.BorderSize = 0;
+            this.MoveRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MoveRight.Location = new System.Drawing.Point(889, 231);
+            this.MoveRight.Name = "MoveRight";
+            this.MoveRight.Size = new System.Drawing.Size(80, 25);
+            this.MoveRight.TabIndex = 7;
+            this.MoveRight.Text = "→";
+            this.MoveRight.UseVisualStyleBackColor = false;
+            this.MoveRight.Click += new System.EventHandler(this.MoveRightBtn_Click);
             // 
-            // Increase_Scale
+            // MoveUp
             // 
-            this.Increase_Scale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
-            this.Increase_Scale.FlatAppearance.BorderSize = 0;
-            this.Increase_Scale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Increase_Scale.Location = new System.Drawing.Point(880, 442);
-            this.Increase_Scale.Name = "Increase_Scale";
-            this.Increase_Scale.Size = new System.Drawing.Size(80, 25);
-            this.Increase_Scale.TabIndex = 5;
-            this.Increase_Scale.Text = "+";
-            this.Increase_Scale.UseVisualStyleBackColor = false;
-            this.Increase_Scale.Click += new System.EventHandler(this.Increase_Scale_Click_1);
+            this.MoveUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.MoveUp.FlatAppearance.BorderSize = 0;
+            this.MoveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MoveUp.Location = new System.Drawing.Point(889, 262);
+            this.MoveUp.Name = "MoveUp";
+            this.MoveUp.Size = new System.Drawing.Size(80, 25);
+            this.MoveUp.TabIndex = 8;
+            this.MoveUp.Text = "↑";
+            this.MoveUp.UseVisualStyleBackColor = false;
+            this.MoveUp.Click += new System.EventHandler(this.MoveUp_Click);
+            // 
+            // MoveDown
+            // 
+            this.MoveDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.MoveDown.FlatAppearance.BorderSize = 0;
+            this.MoveDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MoveDown.Location = new System.Drawing.Point(889, 293);
+            this.MoveDown.Name = "MoveDown";
+            this.MoveDown.Size = new System.Drawing.Size(80, 25);
+            this.MoveDown.TabIndex = 9;
+            this.MoveDown.Text = "↓";
+            this.MoveDown.UseVisualStyleBackColor = false;
+            this.MoveDown.Click += new System.EventHandler(this.MoveDown_Click);
+            // 
+            // MoveLeft
+            // 
+            this.MoveLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.MoveLeft.FlatAppearance.BorderSize = 0;
+            this.MoveLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MoveLeft.Location = new System.Drawing.Point(889, 200);
+            this.MoveLeft.Name = "MoveLeft";
+            this.MoveLeft.Size = new System.Drawing.Size(80, 25);
+            this.MoveLeft.TabIndex = 10;
+            this.MoveLeft.Text = "←";
+            this.MoveLeft.UseVisualStyleBackColor = false;
+            this.MoveLeft.Click += new System.EventHandler(this.MoveLeft_Click);
             // 
             // MainForm
             // 
@@ -521,6 +581,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.Button Decrease_Scale;
         private System.Windows.Forms.Button Increase_Scale;
+        private System.Windows.Forms.Button MoveRight;
+        private System.Windows.Forms.Button MoveLeft;
+        private System.Windows.Forms.Button MoveDown;
+        private System.Windows.Forms.Button MoveUp;
     }
 }
 
