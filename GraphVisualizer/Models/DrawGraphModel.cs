@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace GraphVisualizer.Models
 {
-    internal class DrawGraphModel
+    public class DrawGraphModel
     {
         Graphics g;
+        PictureBox _pictureBox;
         List<Node> nodes = new List<Node>();
         int diam = 80;
-        const int scrollSize = 500;
         private int scrollNumber = 0;
         private const int scrollNumberAllowed = 3;
-        //int[,] matrix = new int[v, v];
+        const float scalingCoefficient = 1.2F;
         string[,] _matrix = {
             { "2", "1", "0", "0", "0" ,"0" },
             { "1", "0", "2", "0", "0", "0" },
@@ -22,65 +24,49 @@ namespace GraphVisualizer.Models
             { "0", "0", "1", "1", "0", "3" },
             { "0", "0", "0", "0", "3", "1" }
         };
-        private bool dragging = false;
-        private Point dragCursorPoint;
-        private Point dragFixedPoint;
-        PictureBox _pictureBox;
-
-        public DrawGraphModel() { }
 
         public DrawGraphModel(PictureBox pictureBox, string[,] matrix)
         {
             _matrix = matrix;
             _pictureBox = pictureBox;
-            _pictureBox.MouseWheel += pictureBox1_MouseWheel;
             g = _pictureBox.CreateGraphics();
         }
 
-        private void pictureBox1_MouseWheel(object sender, MouseEventArgs e)
-        {
-            if (Math.Abs(_pictureBox.Height - 2 * diam) > e.Delta / scrollSize && diam + e.Delta / scrollSize > 0)
-            {
-
-                //diam += e.Delta / scrollSize;
-                scrollNumber += e.Delta / SystemInformation.MouseWheelScrollDelta;
-                if (scrollNumber >= scrollNumberAllowed)
-                    scrollNumber = scrollNumberAllowed;
-                if (scrollNumber <= -scrollNumberAllowed)
-                    scrollNumber = -scrollNumberAllowed;
-                if (scrollNumber > -scrollNumberAllowed && scrollNumber < scrollNumberAllowed)
-                {
-                    g.ScaleTransform(1 + (Convert.ToSingle(e.Delta) / scrollSize), 1 + (Convert.ToSingle(e.Delta) / scrollSize));
-                    button1_Click(this, EventArgs.Empty);
-                }
+        public void IncreaseScale() {
+            if (scrollNumber == scrollNumberAllowed) {
+                Debug.WriteLine("scrollNumber=" + scrollNumber + ", can't scale up");
+                return;
             }
+
+            scrollNumber++;
+
+            Matrix scalingMatrix = new Matrix();
+
+            scalingMatrix.Scale(scalingCoefficient, scalingCoefficient);
+            
+            g.MultiplyTransform(scalingMatrix);
+
+            Render();
         }
 
-        public void MsDwn(object sender, MouseEventArgs e)
-        {
-            dragging = true;
-            dragFixedPoint = e.Location;
-        }
-
-        public void MsMv(object sender, MouseEventArgs e)
-        {
-            if (dragging)
-            {
-                dragCursorPoint = e.Location;
-                g.TranslateTransform(dragCursorPoint.X - dragFixedPoint.X,
-                    dragCursorPoint.Y - dragFixedPoint.Y);
-                dragFixedPoint = dragCursorPoint;
-                button1_Click(this, EventArgs.Empty);
-
+        public void DecreaseScale() {
+            if (scrollNumber == -scrollNumberAllowed) {
+                Debug.WriteLine("scrollNumber=" + scrollNumber + ", can't scale down");
+                return;
             }
+
+            scrollNumber--;
+
+            Matrix scalingMatrix = new Matrix();
+
+            scalingMatrix.Scale(1 / scalingCoefficient, 1 / scalingCoefficient);
+
+            g.MultiplyTransform(scalingMatrix);
+
+            Render();
         }
 
-        public void MsUp(object sender, MouseEventArgs e)
-        {
-            dragging = false;
-        }
-
-        public void button1_Click(object sender, EventArgs e)
+        public void Render()
         {
             //g = this.pictureBox1.CreateGraphics();
             //g = button1.CreateGraphics();

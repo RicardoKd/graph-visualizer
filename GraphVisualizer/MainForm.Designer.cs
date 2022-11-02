@@ -59,6 +59,8 @@
             this.button_Save = new System.Windows.Forms.Button();
             this.NodeConnectionsDataGridView = new System.Windows.Forms.DataGridView();
             this.TabView = new System.Windows.Forms.TabControl();
+            this.Decrease_Scale = new System.Windows.Forms.Button();
+            this.Increase_Scale = new System.Windows.Forms.Button();
             this.IncidencyTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IncidencyMatrixDataGridView)).BeginInit();
             this.AdjacencyTabPage.SuspendLayout();
@@ -78,10 +80,10 @@
             // IncidencyTabPage
             // 
             this.IncidencyTabPage.Controls.Add(this.IncidencyMatrixDataGridView);
-            this.IncidencyTabPage.Location = new System.Drawing.Point(4, 27);
+            this.IncidencyTabPage.Location = new System.Drawing.Point(4, 25);
             this.IncidencyTabPage.Name = "IncidencyTabPage";
             this.IncidencyTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.IncidencyTabPage.Size = new System.Drawing.Size(977, 530);
+            this.IncidencyTabPage.Size = new System.Drawing.Size(977, 532);
             this.IncidencyTabPage.TabIndex = 8;
             this.IncidencyTabPage.Text = "Incidency";
             this.IncidencyTabPage.UseVisualStyleBackColor = true;
@@ -106,10 +108,10 @@
             // AdjacencyTabPage
             // 
             this.AdjacencyTabPage.Controls.Add(this.AdjacencyMatrixDataGridView);
-            this.AdjacencyTabPage.Location = new System.Drawing.Point(4, 27);
+            this.AdjacencyTabPage.Location = new System.Drawing.Point(4, 25);
             this.AdjacencyTabPage.Name = "AdjacencyTabPage";
             this.AdjacencyTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AdjacencyTabPage.Size = new System.Drawing.Size(977, 530);
+            this.AdjacencyTabPage.Size = new System.Drawing.Size(977, 532);
             this.AdjacencyTabPage.TabIndex = 7;
             this.AdjacencyTabPage.Text = "Adjacency";
             this.AdjacencyTabPage.UseVisualStyleBackColor = true;
@@ -138,10 +140,10 @@
             this.HamiltonTabPage.Controls.Add(this.HamiltonLengthLabel);
             this.HamiltonTabPage.Controls.Add(this.HamiltonResultLabel);
             this.HamiltonTabPage.Controls.Add(this.ExecuteHamiltonButton);
-            this.HamiltonTabPage.Location = new System.Drawing.Point(4, 27);
+            this.HamiltonTabPage.Location = new System.Drawing.Point(4, 25);
             this.HamiltonTabPage.Name = "HamiltonTabPage";
             this.HamiltonTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.HamiltonTabPage.Size = new System.Drawing.Size(977, 530);
+            this.HamiltonTabPage.Size = new System.Drawing.Size(977, 532);
             this.HamiltonTabPage.TabIndex = 6;
             this.HamiltonTabPage.Text = "Hamilton";
             // 
@@ -195,9 +197,9 @@
             this.DijkstraTabPage.Controls.Add(this.DijkstraMatrixDataGridView);
             this.DijkstraTabPage.Controls.Add(this.ExecuteDijkstrasAlgorithmButton);
             this.DijkstraTabPage.Controls.Add(this.textBox2);
-            this.DijkstraTabPage.Location = new System.Drawing.Point(4, 27);
+            this.DijkstraTabPage.Location = new System.Drawing.Point(4, 25);
             this.DijkstraTabPage.Name = "DijkstraTabPage";
-            this.DijkstraTabPage.Size = new System.Drawing.Size(977, 530);
+            this.DijkstraTabPage.Size = new System.Drawing.Size(977, 532);
             this.DijkstraTabPage.TabIndex = 3;
             this.DijkstraTabPage.Text = "Dijkstra";
             // 
@@ -240,14 +242,16 @@
             // 
             // GraphViewTabPage
             // 
+            this.GraphViewTabPage.Controls.Add(this.Decrease_Scale);
+            this.GraphViewTabPage.Controls.Add(this.Increase_Scale);
             this.GraphViewTabPage.Controls.Add(this.DrawPrimButton);
             this.GraphViewTabPage.Controls.Add(this.textBox1);
             this.GraphViewTabPage.Controls.Add(this.DrawGraphButton);
             this.GraphViewTabPage.Controls.Add(this.pictureBox1);
-            this.GraphViewTabPage.Location = new System.Drawing.Point(4, 27);
+            this.GraphViewTabPage.Location = new System.Drawing.Point(4, 25);
             this.GraphViewTabPage.Name = "GraphViewTabPage";
             this.GraphViewTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.GraphViewTabPage.Size = new System.Drawing.Size(977, 530);
+            this.GraphViewTabPage.Size = new System.Drawing.Size(977, 532);
             this.GraphViewTabPage.TabIndex = 2;
             this.GraphViewTabPage.Text = "Graph view";
             this.GraphViewTabPage.UseVisualStyleBackColor = true;
@@ -304,10 +308,10 @@
             this.MatrixOfWeightsTabPage.Controls.Add(this.AddNodeToMatrixButton);
             this.MatrixOfWeightsTabPage.Controls.Add(this.SaveMatrixButton);
             this.MatrixOfWeightsTabPage.Controls.Add(this.MatrixOfWeightsDataGridView);
-            this.MatrixOfWeightsTabPage.Location = new System.Drawing.Point(4, 27);
+            this.MatrixOfWeightsTabPage.Location = new System.Drawing.Point(4, 25);
             this.MatrixOfWeightsTabPage.Name = "MatrixOfWeightsTabPage";
             this.MatrixOfWeightsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MatrixOfWeightsTabPage.Size = new System.Drawing.Size(977, 530);
+            this.MatrixOfWeightsTabPage.Size = new System.Drawing.Size(977, 532);
             this.MatrixOfWeightsTabPage.TabIndex = 1;
             this.MatrixOfWeightsTabPage.Text = "Matrix view";
             // 
@@ -363,10 +367,10 @@
             this.TableTabPage.Controls.Add(this.AddConnectionButton);
             this.TableTabPage.Controls.Add(this.button_Save);
             this.TableTabPage.Controls.Add(this.NodeConnectionsDataGridView);
-            this.TableTabPage.Location = new System.Drawing.Point(4, 27);
+            this.TableTabPage.Location = new System.Drawing.Point(4, 25);
             this.TableTabPage.Name = "TableTabPage";
             this.TableTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TableTabPage.Size = new System.Drawing.Size(977, 530);
+            this.TableTabPage.Size = new System.Drawing.Size(977, 532);
             this.TableTabPage.TabIndex = 0;
             this.TableTabPage.Text = "Table view";
             // 
@@ -423,6 +427,32 @@
             this.TabView.SelectedIndex = 0;
             this.TabView.Size = new System.Drawing.Size(985, 561);
             this.TabView.TabIndex = 0;
+            // 
+            // Decrease_Scale
+            // 
+            this.Decrease_Scale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.Decrease_Scale.FlatAppearance.BorderSize = 0;
+            this.Decrease_Scale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Decrease_Scale.Location = new System.Drawing.Point(880, 473);
+            this.Decrease_Scale.Name = "Decrease_Scale";
+            this.Decrease_Scale.Size = new System.Drawing.Size(80, 25);
+            this.Decrease_Scale.TabIndex = 6;
+            this.Decrease_Scale.Text = "-";
+            this.Decrease_Scale.UseVisualStyleBackColor = false;
+            this.Decrease_Scale.Click += new System.EventHandler(this.Decrease_Scale_Click);
+            // 
+            // Increase_Scale
+            // 
+            this.Increase_Scale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.Increase_Scale.FlatAppearance.BorderSize = 0;
+            this.Increase_Scale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Increase_Scale.Location = new System.Drawing.Point(880, 442);
+            this.Increase_Scale.Name = "Increase_Scale";
+            this.Increase_Scale.Size = new System.Drawing.Size(80, 25);
+            this.Increase_Scale.TabIndex = 5;
+            this.Increase_Scale.Text = "+";
+            this.Increase_Scale.UseVisualStyleBackColor = false;
+            this.Increase_Scale.Click += new System.EventHandler(this.Increase_Scale_Click_1);
             // 
             // MainForm
             // 
@@ -489,6 +519,8 @@
         private System.Windows.Forms.Button CenterSearchButton;
         private System.Windows.Forms.DataGridView DijkstraMatrixDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.Button Decrease_Scale;
+        private System.Windows.Forms.Button Increase_Scale;
     }
 }
 

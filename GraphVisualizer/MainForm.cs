@@ -18,6 +18,7 @@ namespace GraphVisualizer
         private string[,] _primsMatrix;
         private string[,] _dijkstraMatrix;
         private List<NodeConnection> _nodeConnections = new List<NodeConnection>();
+        private DrawGraphModel drawGraph;
 
         public MainForm()
         {
@@ -194,8 +195,10 @@ namespace GraphVisualizer
 
         private void DrawGraphButtonClick(object sender, EventArgs e)
         {
-            var drawGraph = new DrawGraphModel(pictureBox1, _matrix);
-            drawGraph.button1_Click(this, EventArgs.Empty);
+            drawGraph = new DrawGraphModel(pictureBox1, _matrix);
+            
+            drawGraph.Render();
+            
         }
 
         private void ExecuteHamiltonButtonClick(object sender, EventArgs e)
@@ -292,7 +295,7 @@ namespace GraphVisualizer
             _primsMatrix = Convertors.TableToMatrixOfWeights(table);
 
             var drawGraph = new DrawGraphModel(pictureBox1, _primsMatrix);
-            drawGraph.button1_Click(this, EventArgs.Empty);
+            drawGraph.Render();
         }
 
         private void ExecuteDijkstrasAlgorithmButtonClick(object sender, EventArgs e)
@@ -413,6 +416,17 @@ namespace GraphVisualizer
             //}
 
             //new CenterSearchAlgorithm(primsMatrix, matrix).Execute();
+        }
+
+        private void Increase_Scale_Click(object sender, EventArgs e) {
+
+        }
+        private void Increase_Scale_Click_1(object sender, EventArgs e) {
+            drawGraph.IncreaseScale();
+        }
+
+        private void Decrease_Scale_Click(object sender, EventArgs e) {
+            drawGraph.DecreaseScale();
         }
     }
 }
