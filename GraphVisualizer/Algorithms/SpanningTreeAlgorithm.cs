@@ -52,13 +52,7 @@ namespace GraphVisualizer.Algorithms
             }
         }
 
-        private void Print(Edge[] result, int e)
-        {
-            for (int i = 0; i < e; ++i)
-                Console.WriteLine("{0} -- {1} == {2}", result[i].Source, result[i].Destination, result[i].Weight);
-        }
-
-        public void Calculate()
+        public Edge[] Calculate()
         {
             Edge[] result = new Edge[_verticesCount];
             int i = 0;
@@ -90,7 +84,7 @@ namespace GraphVisualizer.Algorithms
                 }
             }
 
-            Print(result, e);
+            return result;
         }
     }
 }
