@@ -210,6 +210,7 @@
     <Compile Include="Algorithms\CenterSearchAlgorithm.cs" />
     <Compile Include="Algorithms\DijkstraAlgorithm.cs" />
     <Compile Include="Algorithms\PrimsAlgorithm.cs" />
+    <Compile Include="Algorithms\SpanningTreeAlgorithm.cs" />
     <Compile Include="Helpers\Convertors.cs" />
     <Compile Include="Models\DrawGraphModel.cs" />
     <Compile Include="MainForm.cs">

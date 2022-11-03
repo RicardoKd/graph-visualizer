@@ -64,6 +64,9 @@
             this.button_Save = new System.Windows.Forms.Button();
             this.NodeConnectionsDataGridView = new System.Windows.Forms.DataGridView();
             this.TabView = new System.Windows.Forms.TabControl();
+            this.SpanningTreePage = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.ExecuteSpanningTreeAlgorithmButton = new System.Windows.Forms.Button();
             this.IncidencyTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IncidencyMatrixDataGridView)).BeginInit();
             this.AdjacencyTabPage.SuspendLayout();
@@ -78,6 +81,7 @@
             this.TableTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NodeConnectionsDataGridView)).BeginInit();
             this.TabView.SuspendLayout();
+            this.SpanningTreePage.SuspendLayout();
             this.SuspendLayout();
             // 
             // IncidencyTabPage
@@ -503,12 +507,44 @@
             this.TabView.Controls.Add(this.GraphViewTabPage);
             this.TabView.Controls.Add(this.AdjacencyTabPage);
             this.TabView.Controls.Add(this.IncidencyTabPage);
+            this.TabView.Controls.Add(this.SpanningTreePage);
             this.TabView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabView.Location = new System.Drawing.Point(0, 0);
             this.TabView.Name = "TabView";
             this.TabView.SelectedIndex = 0;
             this.TabView.Size = new System.Drawing.Size(985, 561);
             this.TabView.TabIndex = 0;
+            // 
+            // SpanningTreePage
+            // 
+            this.SpanningTreePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(221)))), ((int)(((byte)(225)))));
+            this.SpanningTreePage.Controls.Add(this.ExecuteSpanningTreeAlgorithmButton);
+            this.SpanningTreePage.Controls.Add(this.panel1);
+            this.SpanningTreePage.Location = new System.Drawing.Point(4, 25);
+            this.SpanningTreePage.Name = "SpanningTreePage";
+            this.SpanningTreePage.Size = new System.Drawing.Size(977, 532);
+            this.SpanningTreePage.TabIndex = 9;
+            this.SpanningTreePage.Text = "Spanning tree";
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(8, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(864, 509);
+            this.panel1.TabIndex = 0;
+            // 
+            // ExecuteSpanningTreeAlgorithmButton
+            // 
+            this.ExecuteSpanningTreeAlgorithmButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.ExecuteSpanningTreeAlgorithmButton.FlatAppearance.BorderSize = 0;
+            this.ExecuteSpanningTreeAlgorithmButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExecuteSpanningTreeAlgorithmButton.Location = new System.Drawing.Point(889, 15);
+            this.ExecuteSpanningTreeAlgorithmButton.Name = "ExecuteSpanningTreeAlgorithmButton";
+            this.ExecuteSpanningTreeAlgorithmButton.Size = new System.Drawing.Size(80, 25);
+            this.ExecuteSpanningTreeAlgorithmButton.TabIndex = 2;
+            this.ExecuteSpanningTreeAlgorithmButton.Text = "Execute";
+            this.ExecuteSpanningTreeAlgorithmButton.UseVisualStyleBackColor = false;
+            this.ExecuteSpanningTreeAlgorithmButton.Click += new System.EventHandler(this.ExecuteSpanningTreeAlgorithmButton_Click);
             // 
             // MainForm
             // 
@@ -536,6 +572,7 @@
             this.TableTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.NodeConnectionsDataGridView)).EndInit();
             this.TabView.ResumeLayout(false);
+            this.SpanningTreePage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -578,6 +615,9 @@
         private System.Windows.Forms.Button MoveDown;
         private System.Windows.Forms.Button MoveUp;
         private System.Windows.Forms.Button MedianSearchButton;
+        private System.Windows.Forms.TabPage SpanningTreePage;
+        private System.Windows.Forms.Button ExecuteSpanningTreeAlgorithmButton;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
