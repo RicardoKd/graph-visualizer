@@ -623,9 +623,9 @@ namespace GraphVisualizer
         }
 
         private void ExecuteSpanningTreeAlgorithmButton_Click(object sender, EventArgs e) {
-            int quantityOfVertices = (int)Math.Sqrt(_adjacencyMatrix.Length) - 1;
+            int quantityOfVertices = (int)Math.Sqrt(_matrix.Length) - 1;
 
-            SpanningTreeAlgorithm spanningTree = new SpanningTreeAlgorithm(quantityOfVertices, _nodeConnections);
+            SpanningTreeAlgorithm spanningTree = new SpanningTreeAlgorithm(quantityOfVertices, Convertors.MatrixOfWeightsToEdges(_matrix));
             spanningTree.Calculate();
         }
 

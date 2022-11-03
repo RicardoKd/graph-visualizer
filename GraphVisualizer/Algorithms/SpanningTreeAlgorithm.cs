@@ -2,37 +2,42 @@
 using System;
 using System.Collections.Generic;
 
-namespace GraphVisualizer.Algorithms {
-    public struct Edge {
+namespace GraphVisualizer.Algorithms
+{
+    public struct Edge
+    {
         public int Source;
         public int Destination;
         public int Weight;
     }
 
-    public struct Subset {
+    public struct Subset
+    {
         public int Parent;
         public int Rank;
     }
 
-    public class SpanningTreeAlgorithm {
-        private List<NodeConnection> Edges;
-        private int verticesCount;
-        private Edge[] edges;
+    public class SpanningTreeAlgorithm
+    {
+        private Edge[] _edges;
+        private int _verticesCount;
 
-        public SpanningTreeAlgorithm (int verticesCount, List<NodeConnection> edges) {
-            this.verticesCount = verticesCount;
-            Edges = new List<NodeConnection>(edges);
-            // edges = new Edge[edgesCount];
+        public SpanningTreeAlgorithm(int verticesCount, List<Edge> edges)
+        {
+            _verticesCount = verticesCount;
+            _edges = edges.ToArray();
         }
 
-        private int Find(Subset[] subsets, int i) {
+        private int Find(Subset[] subsets, int i)
+        {
             if (subsets[i].Parent != i)
                 subsets[i].Parent = Find(subsets, subsets[i].Parent);
 
             return subsets[i].Parent;
         }
 
-        private void Union(Subset[] subsets, int x, int y) {
+        private void Union(Subset[] subsets, int x, int y)
+        {
             int xroot = Find(subsets, x);
             int yroot = Find(subsets, y);
 
@@ -40,40 +45,46 @@ namespace GraphVisualizer.Algorithms {
                 subsets[xroot].Parent = yroot;
             else if (subsets[xroot].Rank > subsets[yroot].Rank)
                 subsets[yroot].Parent = xroot;
-            else {
+            else
+            {
                 subsets[yroot].Parent = xroot;
                 ++subsets[xroot].Rank;
             }
         }
 
-        private void Print(Edge[] result, int e) {
+        private void Print(Edge[] result, int e)
+        {
             for (int i = 0; i < e; ++i)
                 Console.WriteLine("{0} -- {1} == {2}", result[i].Source, result[i].Destination, result[i].Weight);
         }
 
-        public void Calculate() {
-            Edge[] result = new Edge[verticesCount];
+        public void Calculate()
+        {
+            Edge[] result = new Edge[_verticesCount];
             int i = 0;
             int e = 0;
 
-            Array.Sort(edges, delegate (Edge a, Edge b)
+            Array.Sort(_edges, delegate (Edge a, Edge b)
             {
                 return a.Weight.CompareTo(b.Weight);
             });
 
-            Subset[] subsets = new Subset[verticesCount];
+            Subset[] subsets = new Subset[_verticesCount];
 
-            for (int v = 0; v < verticesCount; ++v) {
+            for (int v = 0; v < _verticesCount; ++v)
+            {
                 subsets[v].Parent = v;
                 subsets[v].Rank = 0;
             }
 
-            while (e < verticesCount - 1) {
-                Edge nextEdge = edges[i++];
+            while (e < _verticesCount - 1)
+            {
+                Edge nextEdge = _edges[i++];
                 int x = Find(subsets, nextEdge.Source);
                 int y = Find(subsets, nextEdge.Destination);
 
-                if (x != y) {
+                if (x != y)
+                {
                     result[e++] = nextEdge;
                     Union(subsets, x, y);
                 }

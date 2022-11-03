@@ -1,4 +1,5 @@
-﻿using GraphVisualizer.Structures;
+﻿using GraphVisualizer.Algorithms;
+using GraphVisualizer.Structures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -132,6 +133,50 @@ namespace GraphVisualizer.Helpers
                 {
                     if ((nodeConnections[i].FirstPoint == nodeConnections[j].FirstPoint && nodeConnections[i].SecondPoint == nodeConnections[j].SecondPoint) ||
                         (nodeConnections[i].FirstPoint == nodeConnections[j].SecondPoint && nodeConnections[i].SecondPoint == nodeConnections[j].FirstPoint))
+                    {
+                        nodesToRemoveIndexes.Add(i);
+                    }
+                }
+            }
+
+            nodesToRemoveIndexes = nodesToRemoveIndexes.OrderByDescending(x => x).ToList();
+
+            for (int i = 0; i < nodesToRemoveIndexes.Count; i++)
+            {
+                nodeConnections.RemoveAt(nodesToRemoveIndexes[i]);
+            }
+
+            return nodeConnections;
+        }
+
+        public static List<Edge> MatrixOfWeightsToEdges(string[,] matrixOfWeights)
+        {
+            List<Edge> nodeConnections = new List<Edge>();
+
+            for (int i = 1; i < matrixOfWeights.GetLength(0); i++)
+            {
+                for (int j = 1; j < matrixOfWeights.GetLength(1); j++)
+                {
+                    if (Convert.ToInt32(matrixOfWeights[i, j]) == 0)
+                    {
+                        continue;
+                    }
+                    nodeConnections.Add(new Edge
+                    {
+                        Source = i - 1, 
+                        Destination = j - 1, 
+                        Weight = Convert.ToInt32(matrixOfWeights[i, j])
+                    });
+                }
+            }
+
+            List<int> nodesToRemoveIndexes = new List<int>();
+            for (int i = 0; i < nodeConnections.Count - 1; i++)
+            {
+                for (int j = i + 1; j < nodeConnections.Count; j++)
+                {
+                    if ((nodeConnections[i].Source == nodeConnections[j].Source && nodeConnections[i].Destination == nodeConnections[j].Destination) ||
+                        (nodeConnections[i].Source == nodeConnections[j].Destination && nodeConnections[i].Destination == nodeConnections[j].Source))
                     {
                         nodesToRemoveIndexes.Add(i);
                     }
