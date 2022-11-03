@@ -35,6 +35,7 @@
             this.AdjacencyMatrixDataGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HamiltonTabPage = new System.Windows.Forms.TabPage();
+            this.MedianSearchButton = new System.Windows.Forms.Button();
             this.CenterSearchButton = new System.Windows.Forms.Button();
             this.HamiltonLengthLabel = new System.Windows.Forms.Label();
             this.HamiltonResultLabel = new System.Windows.Forms.Label();
@@ -45,6 +46,10 @@
             this.ExecuteDijkstrasAlgorithmButton = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.GraphViewTabPage = new System.Windows.Forms.TabPage();
+            this.MoveLeft = new System.Windows.Forms.Button();
+            this.MoveDown = new System.Windows.Forms.Button();
+            this.MoveUp = new System.Windows.Forms.Button();
+            this.MoveRight = new System.Windows.Forms.Button();
             this.Decrease_Scale = new System.Windows.Forms.Button();
             this.Increase_Scale = new System.Windows.Forms.Button();
             this.DrawPrimButton = new System.Windows.Forms.Button();
@@ -61,10 +66,6 @@
             this.button_Save = new System.Windows.Forms.Button();
             this.NodeConnectionsDataGridView = new System.Windows.Forms.DataGridView();
             this.TabView = new System.Windows.Forms.TabControl();
-            this.MoveRight = new System.Windows.Forms.Button();
-            this.MoveUp = new System.Windows.Forms.Button();
-            this.MoveDown = new System.Windows.Forms.Button();
-            this.MoveLeft = new System.Windows.Forms.Button();
             this.IncidencyTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IncidencyMatrixDataGridView)).BeginInit();
             this.AdjacencyTabPage.SuspendLayout();
@@ -140,6 +141,7 @@
             // HamiltonTabPage
             // 
             this.HamiltonTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(221)))), ((int)(((byte)(225)))));
+            this.HamiltonTabPage.Controls.Add(this.MedianSearchButton);
             this.HamiltonTabPage.Controls.Add(this.CenterSearchButton);
             this.HamiltonTabPage.Controls.Add(this.HamiltonLengthLabel);
             this.HamiltonTabPage.Controls.Add(this.HamiltonResultLabel);
@@ -150,6 +152,19 @@
             this.HamiltonTabPage.Size = new System.Drawing.Size(977, 532);
             this.HamiltonTabPage.TabIndex = 6;
             this.HamiltonTabPage.Text = "Hamilton";
+            // 
+            // MedianSearchButton
+            // 
+            this.MedianSearchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.MedianSearchButton.FlatAppearance.BorderSize = 0;
+            this.MedianSearchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MedianSearchButton.Location = new System.Drawing.Point(889, 68);
+            this.MedianSearchButton.Name = "MedianSearchButton";
+            this.MedianSearchButton.Size = new System.Drawing.Size(80, 25);
+            this.MedianSearchButton.TabIndex = 4;
+            this.MedianSearchButton.Text = "Median";
+            this.MedianSearchButton.UseVisualStyleBackColor = false;
+            this.MedianSearchButton.Click += new System.EventHandler(this.MedianSearchButton_Click);
             // 
             // CenterSearchButton
             // 
@@ -263,6 +278,58 @@
             this.GraphViewTabPage.TabIndex = 2;
             this.GraphViewTabPage.Text = "Graph view";
             this.GraphViewTabPage.UseVisualStyleBackColor = true;
+            // 
+            // MoveLeft
+            // 
+            this.MoveLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.MoveLeft.FlatAppearance.BorderSize = 0;
+            this.MoveLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MoveLeft.Location = new System.Drawing.Point(889, 200);
+            this.MoveLeft.Name = "MoveLeft";
+            this.MoveLeft.Size = new System.Drawing.Size(80, 25);
+            this.MoveLeft.TabIndex = 10;
+            this.MoveLeft.Text = "←";
+            this.MoveLeft.UseVisualStyleBackColor = false;
+            this.MoveLeft.Click += new System.EventHandler(this.MoveLeft_Click);
+            // 
+            // MoveDown
+            // 
+            this.MoveDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.MoveDown.FlatAppearance.BorderSize = 0;
+            this.MoveDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MoveDown.Location = new System.Drawing.Point(889, 293);
+            this.MoveDown.Name = "MoveDown";
+            this.MoveDown.Size = new System.Drawing.Size(80, 25);
+            this.MoveDown.TabIndex = 9;
+            this.MoveDown.Text = "↓";
+            this.MoveDown.UseVisualStyleBackColor = false;
+            this.MoveDown.Click += new System.EventHandler(this.MoveDown_Click);
+            // 
+            // MoveUp
+            // 
+            this.MoveUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.MoveUp.FlatAppearance.BorderSize = 0;
+            this.MoveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MoveUp.Location = new System.Drawing.Point(889, 262);
+            this.MoveUp.Name = "MoveUp";
+            this.MoveUp.Size = new System.Drawing.Size(80, 25);
+            this.MoveUp.TabIndex = 8;
+            this.MoveUp.Text = "↑";
+            this.MoveUp.UseVisualStyleBackColor = false;
+            this.MoveUp.Click += new System.EventHandler(this.MoveUp_Click);
+            // 
+            // MoveRight
+            // 
+            this.MoveRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
+            this.MoveRight.FlatAppearance.BorderSize = 0;
+            this.MoveRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MoveRight.Location = new System.Drawing.Point(889, 231);
+            this.MoveRight.Name = "MoveRight";
+            this.MoveRight.Size = new System.Drawing.Size(80, 25);
+            this.MoveRight.TabIndex = 7;
+            this.MoveRight.Text = "→";
+            this.MoveRight.UseVisualStyleBackColor = false;
+            this.MoveRight.Click += new System.EventHandler(this.MoveRightBtn_Click);
             // 
             // Decrease_Scale
             // 
@@ -462,58 +529,6 @@
             this.TabView.Size = new System.Drawing.Size(985, 561);
             this.TabView.TabIndex = 0;
             // 
-            // MoveRight
-            // 
-            this.MoveRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
-            this.MoveRight.FlatAppearance.BorderSize = 0;
-            this.MoveRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MoveRight.Location = new System.Drawing.Point(889, 231);
-            this.MoveRight.Name = "MoveRight";
-            this.MoveRight.Size = new System.Drawing.Size(80, 25);
-            this.MoveRight.TabIndex = 7;
-            this.MoveRight.Text = "→";
-            this.MoveRight.UseVisualStyleBackColor = false;
-            this.MoveRight.Click += new System.EventHandler(this.MoveRightBtn_Click);
-            // 
-            // MoveUp
-            // 
-            this.MoveUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
-            this.MoveUp.FlatAppearance.BorderSize = 0;
-            this.MoveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MoveUp.Location = new System.Drawing.Point(889, 262);
-            this.MoveUp.Name = "MoveUp";
-            this.MoveUp.Size = new System.Drawing.Size(80, 25);
-            this.MoveUp.TabIndex = 8;
-            this.MoveUp.Text = "↑";
-            this.MoveUp.UseVisualStyleBackColor = false;
-            this.MoveUp.Click += new System.EventHandler(this.MoveUp_Click);
-            // 
-            // MoveDown
-            // 
-            this.MoveDown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
-            this.MoveDown.FlatAppearance.BorderSize = 0;
-            this.MoveDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MoveDown.Location = new System.Drawing.Point(889, 293);
-            this.MoveDown.Name = "MoveDown";
-            this.MoveDown.Size = new System.Drawing.Size(80, 25);
-            this.MoveDown.TabIndex = 9;
-            this.MoveDown.Text = "↓";
-            this.MoveDown.UseVisualStyleBackColor = false;
-            this.MoveDown.Click += new System.EventHandler(this.MoveDown_Click);
-            // 
-            // MoveLeft
-            // 
-            this.MoveLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
-            this.MoveLeft.FlatAppearance.BorderSize = 0;
-            this.MoveLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MoveLeft.Location = new System.Drawing.Point(889, 200);
-            this.MoveLeft.Name = "MoveLeft";
-            this.MoveLeft.Size = new System.Drawing.Size(80, 25);
-            this.MoveLeft.TabIndex = 10;
-            this.MoveLeft.Text = "←";
-            this.MoveLeft.UseVisualStyleBackColor = false;
-            this.MoveLeft.Click += new System.EventHandler(this.MoveLeft_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -585,6 +600,7 @@
         private System.Windows.Forms.Button MoveLeft;
         private System.Windows.Forms.Button MoveDown;
         private System.Windows.Forms.Button MoveUp;
+        private System.Windows.Forms.Button MedianSearchButton;
     }
 }
 

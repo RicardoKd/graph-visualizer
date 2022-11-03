@@ -12,7 +12,7 @@ namespace GraphVisualizer.Models
         Graphics g;
         PictureBox _pictureBox;
         List<Node> nodes = new List<Node>();
-        int diam = 80;
+        int diam = 30;
         private int scrollNumber = 0;
         private const int scrollNumberAllowed = 3;
         const float scalingCoefficient = 1.2F;
@@ -86,8 +86,6 @@ namespace GraphVisualizer.Models
 
         public void Render()
         {
-            //g = this.pictureBox1.CreateGraphics();
-            //g = button1.CreateGraphics();
             nodes.Clear();
             int textOffset = 15;
             g.Clear(Color.White);
@@ -112,6 +110,17 @@ namespace GraphVisualizer.Models
                     nodes.Add(new Node(x + diam, y + diam));
                 }
             }
+            //Random random = new Random();
+            //for (int i = 0; i < Math.Sqrt(_matrix.Length); i ++)
+            //{
+            //    //int x = (int)(radius * Math.Cos(currentAngle) + centerX);
+            //    //int y = (int)(radius * Math.Sin(currentAngle) + centerY);
+
+            //    int x = random.Next(0, _pictureBox.Width);
+            //    int y = random.Next(0, _pictureBox.Height);
+
+            //    nodes.Add(new Node(x + diam, y + diam));
+            //}
 
             for (int i = 1; i < Math.Sqrt(_matrix.Length); i++)
             {
@@ -136,7 +145,7 @@ namespace GraphVisualizer.Models
             {
                 g.FillEllipse(solidBrush, nodes[i].x, nodes[i].y, diam, diam);
                 g.DrawEllipse(pen, nodes[i].x, nodes[i].y, diam, diam);
-                g.DrawString(_matrix[i, 0].ToString(), new Font("Courier New", diam / 4, FontStyle.Bold), new SolidBrush(Color.Magenta), new Point(nodes[i].x - textOffset, nodes[i].y - textOffset));
+                g.DrawString(_matrix[i, 0].ToString(), new Font("Courier New", diam / 4, FontStyle.Bold), new SolidBrush(Color.Magenta), new Point(nodes[i].x + diam/4, nodes[i].y + diam/4));
 
 
                 for (int j = i; j < Math.Sqrt(_matrix.Length); j++)
@@ -144,7 +153,7 @@ namespace GraphVisualizer.Models
                     if (Convert.ToInt32(_matrix[i, j]) > 0)
                     {
                         g.DrawString(_matrix[i, j], new Font("Courier New", diam / 4, FontStyle.Bold), new SolidBrush(Color.OrangeRed),
-                            new Point((nodes[i].x + nodes[j].x) / 2 + diam / 2, (nodes[i].y + nodes[j].y) / 2 + diam / 2 - 2 * textOffset));
+                            new Point((nodes[i].x + nodes[j].x) / 2 + diam / 2, (nodes[i].y + nodes[j].y) / 2 + diam / 2));
                     }
                 }
 

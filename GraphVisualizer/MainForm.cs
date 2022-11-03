@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using GraphVisualizer.Algorithms;
 using GraphVisualizer.Helpers;
@@ -19,6 +20,7 @@ namespace GraphVisualizer
         private string[,] _dijkstraMatrix;
         private List<NodeConnection> _nodeConnections = new List<NodeConnection>();
         private DrawGraphModel drawGraph;
+        private bool _canCalculateAlgorithms = true;
 
         public MainForm()
         {
@@ -38,25 +40,25 @@ namespace GraphVisualizer
             MatrixOfWeightsDataGridView.AllowUserToAddRows = false;
 
             int val = 1;
-            //for (int i = val; i < 6; i+=2)
+            //for (int i = val; i < 6; i += 2)
             //{
-            //    dataGridView1.Columns.Add($"Column{i}", ">");
-            //    dataGridView1.Rows[0].Cells[i].Value = i;
-            //    dataGridView1.Rows[1].Cells[i].Value = i;
-            //    dataGridView1.Rows[2].Cells[i].Value = i;
-            //    dataGridView1.Columns.Add($"Column{i}", ">");
-            //    dataGridView1.Rows[0].Cells[i + 1].Value = i;
-            //    dataGridView1.Rows[1].Cells[i + 1].Value = i;
-            //    dataGridView1.Rows[2].Cells[i + 1].Value = i;
+            //    NodeConnectionsDataGridView.Columns.Add($"Column{i}", ">");
+            //    NodeConnectionsDataGridView.Rows[0].Cells[i].Value = i;
+            //    NodeConnectionsDataGridView.Rows[1].Cells[i].Value = i;
+            //    NodeConnectionsDataGridView.Rows[2].Cells[i].Value = i;
+            //    NodeConnectionsDataGridView.Columns.Add($"Column{i}", ">");
+            //    NodeConnectionsDataGridView.Rows[0].Cells[i + 1].Value = i;
+            //    NodeConnectionsDataGridView.Rows[1].Cells[i + 1].Value = i;
+            //    NodeConnectionsDataGridView.Rows[2].Cells[i + 1].Value = i;
             //    val = i;
             //}
             //Random random = new Random();
-            //for (int i = val; i < 5; i++)
+            //for (int i = val; i < 15; i++)
             //{
-            //    dataGridView1.Columns.Add($"Column{i}", ">");
-            //    dataGridView1.Rows[0].Cells[i].Value = random.Next(0, 1000);
-            //    dataGridView1.Rows[1].Cells[i].Value = random.Next(0, 1000);
-            //    dataGridView1.Rows[2].Cells[i].Value = random.Next(0, 1000);
+            //    NodeConnectionsDataGridView.Columns.Add($"Column{i}", ">");
+            //    NodeConnectionsDataGridView.Rows[0].Cells[i].Value = random.Next(0, 1000);
+            //    NodeConnectionsDataGridView.Rows[1].Cells[i].Value = random.Next(0, 1000);
+            //    NodeConnectionsDataGridView.Rows[2].Cells[i].Value = random.Next(0, 1000);
             //    val = i;
             //}
 
@@ -77,14 +79,19 @@ namespace GraphVisualizer
 
             NodeConnectionsDataGridView.Columns.Add($"Column{4}", ">");
             NodeConnectionsDataGridView.Rows[0].Cells[4].Value = "843";
-            NodeConnectionsDataGridView.Rows[1].Cells[4].Value = "689";
-            NodeConnectionsDataGridView.Rows[2].Cells[4].Value = "70";
+            NodeConnectionsDataGridView.Rows[1].Cells[4].Value = "999";
+            NodeConnectionsDataGridView.Rows[2].Cells[4].Value = "70";            
+            
+            NodeConnectionsDataGridView.Columns.Add($"Column{5}", ">");
+            NodeConnectionsDataGridView.Rows[0].Cells[5].Value = "999";
+            NodeConnectionsDataGridView.Rows[1].Cells[5].Value = "689";
+            NodeConnectionsDataGridView.Rows[2].Cells[5].Value = "10";
 
             //dataGridView1.Columns.Add($"Column{val}", ">");
             //dataGridView1.Rows[0].Cells[val + 1].Value = 3;
             //dataGridView1.Rows[1].Cells[val + 1].Value = 3;
             //dataGridView1.Rows[2].Cells[val + 1].Value = 3;
-            //SaveTable();
+            SaveTable();
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -110,8 +117,10 @@ namespace GraphVisualizer
                         continue;
                     }
 
-                    if (NodeConnectionsDataGridView[i, 0].Value.ToString().CompareTo(NodeConnectionsDataGridView[j, 0].Value.ToString()) == 0 &&
-                        NodeConnectionsDataGridView[i, 1].Value.ToString().CompareTo(NodeConnectionsDataGridView[j, 1].Value.ToString()) == 0)
+                    if ((NodeConnectionsDataGridView[i, 0].Value.ToString().CompareTo(NodeConnectionsDataGridView[j, 0].Value.ToString()) == 0 &&
+                        NodeConnectionsDataGridView[i, 1].Value.ToString().CompareTo(NodeConnectionsDataGridView[j, 1].Value.ToString()) == 0) ||
+                        (NodeConnectionsDataGridView[i, 0].Value.ToString().CompareTo(NodeConnectionsDataGridView[j, 1].Value.ToString()) == 0 &&
+                        NodeConnectionsDataGridView[i, 1].Value.ToString().CompareTo(NodeConnectionsDataGridView[j, 0].Value.ToString()) == 0))
                     {
                         hasDuplicates = true;
                         NodeConnectionsDataGridView.Rows[0].Cells[i].Style.BackColor = Color.Red;
@@ -136,6 +145,12 @@ namespace GraphVisualizer
                 _nodeConnections.Add(new NodeConnection(NodeConnectionsDataGridView[i, 0].Value.ToString(), NodeConnectionsDataGridView[i, 1].Value.ToString(), NodeConnectionsDataGridView[i, 2].Value.ToString()));
             }
 
+            if (_nodeConnections.Count == 0)
+            {
+                MessageBox.Show("Number of inputted nodes is 0");
+                return;
+            }
+
             _matrix = Convertors.TableToMatrixOfWeights(_nodeConnections);
             FillDataGridView(MatrixOfWeightsDataGridView, _matrix);
 
@@ -144,6 +159,66 @@ namespace GraphVisualizer
 
             _incidencyMatrix = Convertors.MatrixOfWeightsToIncidencyMatrix(_matrix);
             FillDataGridView(IncidencyMatrixDataGridView, _incidencyMatrix);
+
+            int[] path;
+
+            int[,] matrix = new int[_adjacencyMatrix.GetLength(0) - 1, _adjacencyMatrix.GetLength(1) - 1];
+
+            for (int i = 1; i < _adjacencyMatrix.GetLength(0); i++)
+            {
+                for (int j = 1; j < _adjacencyMatrix.GetLength(1); j++)
+                {
+                    matrix[i - 1, j - 1] = Convert.ToInt32(_adjacencyMatrix[i, j]);
+                }
+            }
+
+            var hamiltonCycle = new HamiltonAlgorithm(matrix);
+            if (!hamiltonCycle.Calculate(out path))
+            {
+                _canCalculateAlgorithms = false;
+                return;
+            }
+
+            int[,] matrix1 = new int[_matrix.GetLength(0) - 1, _matrix.GetLength(1) - 1];
+
+            for (int i = 1; i < _matrix.GetLength(0); i++)
+            {
+                for (int j = 1; j < _matrix.GetLength(1); j++)
+                {
+                    matrix1[i - 1, j - 1] = Convert.ToInt32(_matrix[i, j]);
+                }
+            }
+
+            var result = new DijkstraAlgorithm(matrix1).Calculate();
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                for (int j = 0; j < result[i].Count; j += 2)
+                {
+                    result[i][j] = _matrix[0, Convert.ToInt32(result[i][j]) + 1];
+                }
+            }
+
+            var dijkstraMatrix = new string[_matrix.GetLength(0), _matrix.GetLength(0)];
+
+            for (int i = 0; i < _matrix.GetLength(0); i++)
+            {
+                dijkstraMatrix[0, i] = _matrix[0, i];
+                dijkstraMatrix[i, 0] = _matrix[i, 0];
+            }
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                //_matrix[0, i + 1];
+                for (int j = 0; j < result[i].Count; j += 2)
+                {
+                    dijkstraMatrix[i + 1, j / 2 + 1] = result[i][j + 1];
+                }
+                //output += "\n";
+            }
+
+            _dijkstraMatrix = dijkstraMatrix;
+            FillDataGridView(DijkstraMatrixDataGridView, dijkstraMatrix);
         }
 
         private void FillDataGridView(DataGridView dataGridView, string[,] listOfElements)
@@ -274,6 +349,12 @@ namespace GraphVisualizer
 
         private void DrawPrimButtonClick(object sender, EventArgs e)
         {
+            if (!_canCalculateAlgorithms)
+            {
+                MessageBox.Show("Cannot calculate Prims algorithm");
+                return;
+            }
+
             int[,] matrix = new int[_matrix.GetLength(0) - 1, _matrix.GetLength(1) - 1];
 
             for (int i = 1; i < _matrix.GetLength(0); i++)
@@ -300,6 +381,12 @@ namespace GraphVisualizer
 
         private void ExecuteDijkstrasAlgorithmButtonClick(object sender, EventArgs e)
         {
+            if (!_canCalculateAlgorithms)
+            {
+                MessageBox.Show("Cannot calculate Dijkstras algorithm");
+                return;
+            }
+
             int[,] matrix = new int[_matrix.GetLength(0) - 1, _matrix.GetLength(1) - 1];
 
             for (int i = 1; i < _matrix.GetLength(0); i++)
@@ -360,6 +447,12 @@ namespace GraphVisualizer
 
         private void CenterSearchButton_Click(object sender, EventArgs e)
         {
+            if (!_canCalculateAlgorithms)
+            {
+                MessageBox.Show("Cannot calculate center algorithm");
+                return;
+            }
+
             int max = 0;
             int min = 0;
             var listOfMaxes = new List<int>();
@@ -395,28 +488,88 @@ namespace GraphVisualizer
                 }
             }
 
-            //int[,] matrix = new int[_matrix.GetLength(0) - 1, _matrix.GetLength(1) - 1];
 
-            //for (int i = 1; i < _matrix.GetLength(0); i++)
-            //{
-            //    for (int j = 1; j < _matrix.GetLength(1); j++)
-            //    {
-            //        matrix[i - 1, j - 1] = Convert.ToInt32(_matrix[i, j]);
-            //    }
-            //}
+            string node1 = string.Empty;
+            string node2 = string.Empty;
 
-            //int[,] primsMatrix = new int[_primsMatrix.GetLength(0) - 1, _primsMatrix.GetLength(1) - 1];
+            for (int i = 1; i < _dijkstraMatrix.GetLength(0); i++)
+            {
+                for (int j = 1; j < _dijkstraMatrix.GetLength(1); j++)
+                {
+                    if (Convert.ToInt32(_dijkstraMatrix[i, j]) == min)
+                    {
+                        if (node1 == string.Empty)
+                        {
+                            node1 = _dijkstraMatrix[i, 0];
+                        }
+                        else
+                        {
+                            if (node2 == string.Empty)
+                            {
+                                node2 = _dijkstraMatrix[i, 0];
+                            }
+                        }
+                    }
+                }
+            }
 
-            //for (int i = 1; i < _primsMatrix.GetLength(0); i++)
-            //{
-            //    for (int j = 1; j < _primsMatrix.GetLength(1); j++)
-            //    {
-            //        primsMatrix[i - 1, j - 1] = Convert.ToInt32(_primsMatrix[i, j]);
-            //    }
-            //}
-
-            //new CenterSearchAlgorithm(primsMatrix, matrix).Execute();
+            MessageBox.Show("Center is " + node1 + " " + min + " " + node2);
         }
+
+        private void MedianSearchButton_Click(object sender, EventArgs e)
+        {
+            if (!_canCalculateAlgorithms)
+            {
+                MessageBox.Show("Cannot calculate median algorithm");
+                return;
+            }
+
+            int sum = 0;
+            int min = 0;
+            var listOfSums = new List<int>();
+            var listOfMins = new List<int>();
+            for (int i = 1; i < _dijkstraMatrix.GetLength(0); i++)
+            {
+                for (int j = 1; j < _dijkstraMatrix.GetLength(0); j++)
+                {
+                    sum += Convert.ToInt32(_dijkstraMatrix[i, j]);
+                }
+                listOfSums.Add(sum);
+            }
+
+            min = listOfSums[0];
+            for (int i = 1; i < listOfSums.Count; i++)
+            {
+                if (listOfSums[i] < min)
+                {
+                    min = listOfSums[i];
+                }
+            }
+
+            listOfMins.Add(min);
+
+            for (int i = 1; i < listOfSums.Count; i++)
+            {
+                if (listOfSums[i] == min)
+                {
+                    listOfMins.Add(min);
+                }
+            }
+
+            string node1 = string.Empty;
+            string node2 = string.Empty;
+
+            for (int i = 0; i < listOfSums.Count; i++)
+            {
+                if (listOfSums[i] == min)
+                {
+                    node1 = _dijkstraMatrix[i + 1, 0];
+                }
+            }
+
+            MessageBox.Show("Median is " + node1);
+        }
+
         private void Increase_Scale_Click_1(object sender, EventArgs e) {
             drawGraph.IncreaseScale();
         }
