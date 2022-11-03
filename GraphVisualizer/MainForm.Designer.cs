@@ -44,7 +44,6 @@
             this.DijkstraMatrixDataGridView = new System.Windows.Forms.DataGridView();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExecuteDijkstrasAlgorithmButton = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.GraphViewTabPage = new System.Windows.Forms.TabPage();
             this.MoveLeft = new System.Windows.Forms.Button();
             this.MoveDown = new System.Windows.Forms.Button();
@@ -53,7 +52,6 @@
             this.Decrease_Scale = new System.Windows.Forms.Button();
             this.Increase_Scale = new System.Windows.Forms.Button();
             this.DrawPrimButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.DrawGraphButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MatrixOfWeightsTabPage = new System.Windows.Forms.TabPage();
@@ -215,7 +213,6 @@
             this.DijkstraTabPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(221)))), ((int)(((byte)(225)))));
             this.DijkstraTabPage.Controls.Add(this.DijkstraMatrixDataGridView);
             this.DijkstraTabPage.Controls.Add(this.ExecuteDijkstrasAlgorithmButton);
-            this.DijkstraTabPage.Controls.Add(this.textBox2);
             this.DijkstraTabPage.Location = new System.Drawing.Point(4, 25);
             this.DijkstraTabPage.Name = "DijkstraTabPage";
             this.DijkstraTabPage.Size = new System.Drawing.Size(977, 532);
@@ -252,13 +249,6 @@
             this.ExecuteDijkstrasAlgorithmButton.UseVisualStyleBackColor = false;
             this.ExecuteDijkstrasAlgorithmButton.Click += new System.EventHandler(this.ExecuteDijkstrasAlgorithmButtonClick);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(889, 37);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(80, 20);
-            this.textBox2.TabIndex = 0;
-            // 
             // GraphViewTabPage
             // 
             this.GraphViewTabPage.Controls.Add(this.MoveLeft);
@@ -268,7 +258,6 @@
             this.GraphViewTabPage.Controls.Add(this.Decrease_Scale);
             this.GraphViewTabPage.Controls.Add(this.Increase_Scale);
             this.GraphViewTabPage.Controls.Add(this.DrawPrimButton);
-            this.GraphViewTabPage.Controls.Add(this.textBox1);
             this.GraphViewTabPage.Controls.Add(this.DrawGraphButton);
             this.GraphViewTabPage.Controls.Add(this.pictureBox1);
             this.GraphViewTabPage.Location = new System.Drawing.Point(4, 25);
@@ -362,21 +351,13 @@
             this.DrawPrimButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(137)))), ((int)(((byte)(204)))));
             this.DrawPrimButton.FlatAppearance.BorderSize = 0;
             this.DrawPrimButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DrawPrimButton.Location = new System.Drawing.Point(889, 81);
+            this.DrawPrimButton.Location = new System.Drawing.Point(889, 37);
             this.DrawPrimButton.Name = "DrawPrimButton";
             this.DrawPrimButton.Size = new System.Drawing.Size(80, 25);
             this.DrawPrimButton.TabIndex = 3;
             this.DrawPrimButton.Text = "Prim";
             this.DrawPrimButton.UseVisualStyleBackColor = false;
             this.DrawPrimButton.Click += new System.EventHandler(this.DrawPrimButtonClick);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(889, 37);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(80, 20);
-            this.textBox1.TabIndex = 2;
             // 
             // DrawGraphButton
             // 
@@ -547,10 +528,8 @@
             this.HamiltonTabPage.ResumeLayout(false);
             this.HamiltonTabPage.PerformLayout();
             this.DijkstraTabPage.ResumeLayout(false);
-            this.DijkstraTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DijkstraMatrixDataGridView)).EndInit();
             this.GraphViewTabPage.ResumeLayout(false);
-            this.GraphViewTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.MatrixOfWeightsTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MatrixOfWeightsDataGridView)).EndInit();
@@ -575,10 +554,8 @@
         private System.Windows.Forms.Button ExecuteHamiltonButton;
         private System.Windows.Forms.TabPage DijkstraTabPage;
         private System.Windows.Forms.Button ExecuteDijkstrasAlgorithmButton;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TabPage GraphViewTabPage;
         private System.Windows.Forms.Button DrawPrimButton;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button DrawGraphButton;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabPage MatrixOfWeightsTabPage;

@@ -21,6 +21,7 @@ namespace GraphVisualizer
         private List<NodeConnection> _nodeConnections = new List<NodeConnection>();
         private DrawGraphModel drawGraph;
         private bool _canCalculateAlgorithms = true;
+        private bool _isPrim = false;
 
         public MainForm()
         {
@@ -83,9 +84,18 @@ namespace GraphVisualizer
             NodeConnectionsDataGridView.Rows[2].Cells[4].Value = "70";            
             
             NodeConnectionsDataGridView.Columns.Add($"Column{5}", ">");
-            NodeConnectionsDataGridView.Rows[0].Cells[5].Value = "999";
+            NodeConnectionsDataGridView.Rows[0].Cells[5].Value = "843";
             NodeConnectionsDataGridView.Rows[1].Cells[5].Value = "689";
             NodeConnectionsDataGridView.Rows[2].Cells[5].Value = "10";
+            
+            NodeConnectionsDataGridView.Columns.Add($"Column{6}", ">");
+            NodeConnectionsDataGridView.Rows[0].Cells[6].Value = "555";
+            NodeConnectionsDataGridView.Rows[1].Cells[6].Value = "689";
+            NodeConnectionsDataGridView.Rows[2].Cells[6].Value = "20";
+            NodeConnectionsDataGridView.Columns.Add($"Column{7}", ">");
+            NodeConnectionsDataGridView.Rows[0].Cells[7].Value = "999";
+            NodeConnectionsDataGridView.Rows[1].Cells[7].Value = "555";
+            NodeConnectionsDataGridView.Rows[2].Cells[7].Value = "35";
 
             //dataGridView1.Columns.Add($"Column{val}", ">");
             //dataGridView1.Rows[0].Cells[val + 1].Value = 3;
@@ -219,6 +229,19 @@ namespace GraphVisualizer
 
             _dijkstraMatrix = dijkstraMatrix;
             FillDataGridView(DijkstraMatrixDataGridView, dijkstraMatrix);
+
+            var output = string.Empty;
+            for (int i = 0; i < _matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < _matrix.GetLength(1); j++)
+                {
+                    output += _matrix[i, j] + " ";
+                }
+                output += "\n";
+            }
+
+            File.WriteAllText("Matix.txt", output);
+
         }
 
         private void FillDataGridView(DataGridView dataGridView, string[,] listOfElements)
@@ -265,11 +288,13 @@ namespace GraphVisualizer
 
         private void AddNodeToMatrixButtonClick(object sender, EventArgs e)
         {
+            MatrixOfWeightsDataGridView.Columns.Add("x" + _counter, "");
             MatrixOfWeightsDataGridView.Rows.Add("x" + _counter);
         }
 
         private void DrawGraphButtonClick(object sender, EventArgs e)
         {
+            _isPrim = false;
             drawGraph = new DrawGraphModel(pictureBox1, _matrix);
             
             drawGraph.Render();
@@ -355,6 +380,8 @@ namespace GraphVisualizer
                 return;
             }
 
+            _isPrim = true;
+
             int[,] matrix = new int[_matrix.GetLength(0) - 1, _matrix.GetLength(1) - 1];
 
             for (int i = 1; i < _matrix.GetLength(0); i++)
@@ -375,7 +402,7 @@ namespace GraphVisualizer
 
             _primsMatrix = Convertors.TableToMatrixOfWeights(table);
 
-            var drawGraph = new DrawGraphModel(pictureBox1, _primsMatrix);
+            drawGraph = new DrawGraphModel(pictureBox1, _primsMatrix);
             drawGraph.Render();
         }
 

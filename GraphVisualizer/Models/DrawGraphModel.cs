@@ -87,7 +87,7 @@ namespace GraphVisualizer.Models
         public void Render()
         {
             nodes.Clear();
-            int textOffset = 15;
+            int textOffset = 10;
             g.Clear(Color.White);
             Pen pen = new Pen(Color.Black, 3f);
             SolidBrush solidBrush = new SolidBrush(Color.YellowGreen);
@@ -153,7 +153,7 @@ namespace GraphVisualizer.Models
                     if (Convert.ToInt32(_matrix[i, j]) > 0)
                     {
                         g.DrawString(_matrix[i, j], new Font("Courier New", diam / 4, FontStyle.Bold), new SolidBrush(Color.OrangeRed),
-                            new Point((nodes[i].x + nodes[j].x) / 2 + diam / 2, (nodes[i].y + nodes[j].y) / 2 + diam / 2));
+                            new Point((nodes[i].x + nodes[j].x) / 2 + diam / 2, (nodes[i].y + nodes[j].y) / 2 + diam / 2 - 2 * textOffset));
                     }
                 }
 
